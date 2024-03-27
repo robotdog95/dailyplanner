@@ -224,14 +224,17 @@ function handleDrag(event) {
 }
 let dropZoneHour = 8;
 const dropZones = document.querySelectorAll('.drop-zone');
+var dropBool = true;
 dropZones.forEach(dropZone => {
   console.log("in loop for drop zone", dropZone);
   const dropHourId = `hour${dropZoneHour}`;
   const hourElementDrop = document.getElementById(dropHourId);
-  setPosition(dropZone, hourElementDrop, true);
+  setPosition(dropZone, hourElementDrop, !dropBool);
   dropZone.addEventListener('dragover', handleDragOver);
   dropZone.addEventListener('drop', handleDrop);
-  dropZoneHour++;
+  if(dropBool){
+    dropZoneHour++;
+  }
 });
 
 function handleDragOver(event) {
@@ -242,6 +245,7 @@ function handleDrop(event) {
 event.preventDefault();
 const taskId = event.dataTransfer.getData('text/plain');
 const droppedTask = document.getElementById(taskId);
+
 // Handle the dropped task, update position, etc.
 }
 
