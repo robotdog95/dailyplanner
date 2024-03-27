@@ -205,6 +205,44 @@ if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
       console.log(tasks);
       return tasks;
     };
+
+// DROP ZONE HANDLING----------------------------------------------------------------------
+
+const tasks = document.querySelectorAll('.task');
+
+tasks.forEach(task => {
+  task.addEventListener('dragstart', handleDragStart);
+  task.addEventListener('drag', handleDrag);
+});
+
+function handleDragStart(event) {
+  event.dataTransfer.setData('text/plain', event.target.id);
+}
+
+function handleDrag(event) {
+  // Update task position or perform other actions as needed
+}
+
+const dropZones = document.querySelectorAll('.drop-zone');
+dropZones.forEach(dropZone => {
+  dropZone.addEventListener('dragover', handleDragOver);
+  dropZone.addEventListener('drop', handleDrop);
+});
+
+function handleDragOver(event) {
+event.preventDefault();
+}
+
+function handleDrop(event) {
+event.preventDefault();
+const taskId = event.dataTransfer.getData('text/plain');
+const droppedTask = document.getElementById(taskId);
+// Handle the dropped task, update position, etc.
+}
+
+
+
+
   }
   
 
