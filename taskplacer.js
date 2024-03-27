@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
   async function main() {
   
     const cleanTaskArray = [];
+    
     //get hour of now
     function getCurrentHour() {
       const currentDate = new Date();
@@ -13,22 +14,26 @@ document.addEventListener("DOMContentLoaded", function() {
   const currentHour = getCurrentHour();
   console.log(currentHour); // Output: Current hour in integer format
   
-    //function for cleaning hour
+    
     const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
     function randomColor(max){
       return Math.floor(Math.random() * max);
     }
+
+    //function for cleaning hour
     function cleanHour(title, date){
       const dirtyDate = new Date(date);
       const hour = dirtyDate.getHours();
       cleanTaskArray.push({ [title]: hour });
     };
+    
     // Define the task constructor
     function Task(title, taskId, hour) {
       this.title = title;
       this.taskId = taskId;
       this.hour = hour;
     }
+    
     //retrieve the tasks for today
     var tasksForToday ="";
     fetch('https://robotdog95.github.io/dailyplanner/tasks.txt')
@@ -38,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
       return response.text(); // Specify that you're expecting plain text
     })
+      
     .then(text => {
       const trimmedText = text.substring(1, text.length - 1);
       tasksForToday = trimmedText;
@@ -166,7 +172,8 @@ console.log("new emergency hour:", emergencyHour);
     //change the color of the hour
     function HighlightHour(hourElement){
     const currentHour = getCurrentHour();
-      hourElement.style.color = `#000000`
+      hourElement.style.color = `#000000`;
+      console.log("highlighted the hour);
     }
 
     //iterate through all the hours, checking if it's the current one
@@ -179,6 +186,7 @@ const hourElementNow = document.getElementById(nowHourId);
 if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
     console.log(hourElementNow.id, " is now !");
     HighlightHour(hourElementNow);
+  console.log("highlighted the hour);
 }
     }
 
