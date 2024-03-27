@@ -244,7 +244,7 @@ const dropZoneId = event.target.id;
 const dropZoneElement = document.getElementById(dropZoneId);
 dropZoneElement.style.border = `3px solid`;
 }
-    function handleDragLeave(e){
+    function handleDragLeave(event){
         event.preventDefault();
 const dropZoneId = event.target.id;
 const dropZoneElement = document.getElementById(dropZoneId);
