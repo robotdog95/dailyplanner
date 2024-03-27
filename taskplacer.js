@@ -227,6 +227,7 @@ const dropZones = document.querySelectorAll('.drop-zone');
 dropZones.forEach(dropZone => {
   console.log("in loop for drop zone", dropZone);
   setPosition(dropZone, dropZoneHour, true);
+  // error: dropZoneHour should be an hour div element instead of an int. To fix later.
   dropZone.addEventListener('dragover', handleDragOver);
   dropZone.addEventListener('drop', handleDrop);
   dropZoneHour++;
