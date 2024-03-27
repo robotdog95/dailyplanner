@@ -226,7 +226,7 @@ let dropZoneHour = 8;
 const dropZones = document.querySelectorAll('.drop-zone');
 dropZones.forEach(dropZone => {
   console.log("in loop for drop zone", dropZone);
-  dropHourId = `hour${dropZoneHour}`;
+  const dropHourId = `hour${dropZoneHour}`;
   const hourElementDrop = document.getElementById(dropHourId);
   setPosition(dropZone, hourElementDrop, true);
   dropZone.addEventListener('dragover', handleDragOver);
