@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
             newDiv.id = taskId; // Set the id attribute
             newDiv.classList.add('task'); // Add a class to the div
             newDiv.innerHTML = task.title;
+            newDiv.draggable = true;
             mainDiv.appendChild(newDiv); // Append it to the body element  
             // Place the new div
             if (task.hour === null || task.hour === undefined) {
