@@ -46,6 +46,7 @@
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 20px;
+    width: 200px;
     transition: all .2s ease-in-out;
     cursor: grab; /* Change cursor style when hovering over draggable elements */
 }
