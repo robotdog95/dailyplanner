@@ -57,8 +57,8 @@
 
 .drop-zone {
     position: absolute;
-    width: 100px;
-    height: 25px;
+    width: 200px;
+    height: 55px;
     background-color: white;
 }
 
