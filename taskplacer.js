@@ -183,7 +183,7 @@ console.log("new emergency hour:", emergencyHour);
 const hourElementNow = document.getElementById(nowHourId);
 
 if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
-    console.log(hourElementNow.id, " is now !");
+    console.log(hourElementNow.id, " is now !!");
     HighlightHour(hourElementNow);
   console.log("highlighted the hour");
 }
