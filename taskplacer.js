@@ -226,7 +226,7 @@ let dropZoneHour = 8;
 const dropZones = document.querySelectorAll('.drop-zone');
 var dropBool = true;
 dropZones.forEach(dropZone => {
-  dropZone.style.opacity= `0`;
+  dropZone.style.opacity= `0.3`;
   console.log("in loop for drop zone", dropZone);
   const dropHourId = `hour${dropZoneHour}`;
   const hourElementDrop = document.getElementById(dropHourId);
@@ -255,7 +255,9 @@ const droppedTask = document.getElementById(taskId);
 // Handle the dropped task, update position, etc.
 const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
 const topPosition = dropZonePosition.top + window.scrollY;
+const leftPosition = dropZonePosition.left + window.scrollX;
 droppedTask.style.top = `${topPosition}px`;
+droppedTask.style.left = `${leftPosition}px`;
 // maybe add a bool to decide if the dropZone is already full??
       console.log("task has been moved to ",dropZoneId);
   
