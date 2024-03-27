@@ -206,7 +206,7 @@ if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
       return tasks;
     };
 
-// DROP ZONE HANDLING----------------------------------------------------------------------
+// DROP ZONE HANDLING starts here----------------------------------------------------------------------
 
 const tasks = document.querySelectorAll('.task');
 
