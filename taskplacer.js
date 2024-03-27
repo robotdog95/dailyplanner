@@ -207,7 +207,7 @@ if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
     };
 
 // DROP ZONE HANDLING----------------------------------------------------------------------
-
+let initialTaskWidth; 
 const tasks = document.querySelectorAll('.task');
 
 tasks.forEach(task => {
@@ -217,6 +217,7 @@ tasks.forEach(task => {
 
 function handleDragStart(event) {
   event.dataTransfer.setData('text/plain', event.target.id);
+  initialTaskWidth = event.target.offsetWidth;
 }
 
 function handleDrag(event) {
@@ -260,7 +261,7 @@ function handleDrop(event) {
     
     droppedTask.style.top = `${topPosition}px`;
     droppedTask.style.left = `${leftPosition}px`;
-    droppedTask.style.width = `${droppedTask.offsetWidth}px`; // Ensure width remains unchanged
+    droppedTask.style.width = `${initialTaskWidth}px` // Ensure width remains unchanged
     
     console.log("task has been moved to ", dropZoneId);
 }
