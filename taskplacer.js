@@ -226,6 +226,7 @@ let dropZoneHour = 8;
 const dropZones = document.querySelectorAll('.drop-zone');
 var dropBool = true;
 dropZones.forEach(dropZone => {
+  dropZone.style.opacity= `0`;
   console.log("in loop for drop zone", dropZone);
   const dropHourId = `hour${dropZoneHour}`;
   const hourElementDrop = document.getElementById(dropHourId);
@@ -240,15 +241,9 @@ dropZones.forEach(dropZone => {
 
 function handleDragOver(event) {
 event.preventDefault();
-const dropZoneId = event.target.id;
-const dropZoneElement = document.getElementById(dropZoneId);
-dropZoneElement.style.border = `3px solid`;
 }
     function handleDragLeave(event){
         event.preventDefault();
-const dropZoneId = event.target.id;
-const dropZoneElement = document.getElementById(dropZoneId);
-dropZoneElement.style.border = `none`;
     }
 
 function handleDrop(event) {
