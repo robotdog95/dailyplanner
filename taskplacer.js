@@ -176,7 +176,7 @@ console.log("new emergency hour:", emergencyHour);
       console.log("highlighted the hour");
     };
     const hourArray = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
-    for (let h = 8; h < hourArray.length; h++){
+    for (let h = 8; h < hourArray.length+8; h++){
       console.log("looking for hour to highlight...");
       const nowHourId = `hour${h}`;
       const hourIdToLookFor = `hour${currentHour}`; // Just the ID without HTML markup
