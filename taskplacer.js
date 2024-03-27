@@ -206,7 +206,7 @@ if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
       return tasks;
     };
 
-// DROP ZONE HANDLING starts here----------------------------------------------------------------------
+// DROP ZONE HANDLING----------------------------------------------------------------------
 
 const tasks = document.querySelectorAll('.task');
 
@@ -222,11 +222,13 @@ function handleDragStart(event) {
 function handleDrag(event) {
   // Update task position or perform other actions as needed
 }
-
+let dropZoneHour = 8;
 const dropZones = document.querySelectorAll('.drop-zone');
 dropZones.forEach(dropZone => {
+  setPosition(dropZone, dropZoneHour, toggleHour);
   dropZone.addEventListener('dragover', handleDragOver);
   dropZone.addEventListener('drop', handleDrop);
+  dropZoneHour++;
 });
 
 function handleDragOver(event) {
