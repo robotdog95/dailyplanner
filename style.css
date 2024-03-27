@@ -55,3 +55,10 @@
   /* Add additional styling for the dragged element, such as a shadow or opacity */
 }
 
+.drop-zone {
+    position: absolute;
+    width: 100px;
+    height: 25px;
+    background-color: white;
+}
+
