@@ -46,14 +46,14 @@
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 20px;
-    transition: all .2s ease-in-out; 
+    /*transition: all .2s ease-in-out; */
     cursor: grab; /* Change cursor style when hovering over draggable elements */
 
 }
 
 .task:active {
   cursor: grabbing; /* Change cursor style when dragging */
-transform: scale(1.1); 
+ /* transform: scale(1.1); */
     /* Add additional styling for the dragged element, such as a shadow or opacity */
 }
 
