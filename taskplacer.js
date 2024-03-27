@@ -225,7 +225,7 @@ let dropZoneHour = 8;
 const dropZones = document.querySelectorAll('.drop-zone');
 var dropBool = true;
 dropZones.forEach(dropZone => {
-  dropZone.style.opacity= `0.5`;
+  dropZone.style.opacity= `0`;
   console.log("in loop for drop zone", dropZone);
   const dropHourId = `hour${dropZoneHour}`;
   const hourElementDrop = document.getElementById(dropHourId);
