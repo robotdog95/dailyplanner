@@ -259,7 +259,7 @@ function handleDrop(event) {
     
     droppedTask.style.top = `${topPosition}px`;
     droppedTask.style.left = `${leftPosition}px`;
-    droppedTask.style.width = `200px`
+    droppedTask.style.width = `300px`
     console.log("task has been moved to ", dropZoneId);
 }
 
