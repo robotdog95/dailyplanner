@@ -244,10 +244,14 @@ event.preventDefault();
 
 function handleDrop(event) {
 event.preventDefault();
+const dropZoneId = event.target.id;
+const dropZoneElement = document.getElementById(dropZoneId);
 const taskId = event.dataTransfer.getData('text/plain');
 const droppedTask = document.getElementById(taskId);
-
 // Handle the dropped task, update position, etc.
+const newTaskPosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
+console.log("task to be moved to: ",newTaskPosition);
+  
 }
 
 
