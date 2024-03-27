@@ -173,7 +173,7 @@ console.log("new emergency hour:", emergencyHour);
     function HighlightHour(hourElement){
     const currentHour = getCurrentHour();
       hourElement.style.color = `#000000`;
-      console.log("highlighted the hour);
+      console.log("highlighted the hour");
     };
     const hourArray = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
     for (let h = 8; h < hourArray.length; h++){
