@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch('https://robotdog95.github.io/dailyplanner/tasks.txt')
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok lol');
+        throw new Error('Network response was not ok loool');
       }
       return response.text(); // Specify that you're expecting plain text
     })
