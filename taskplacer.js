@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     //retrieve the tasks for today
     var tasksForToday ="";
-    fetch('http://localhost:3000/taskstoday.txt')
+    fetch('https://robotdog95.github.io/dailyplanner/tasks.txt')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -39,7 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
       return response.text(); // Specify that you're expecting plain text
     })
     .then(text => {
-      tasksForToday = text;
+      const trimmedText = text.substring(1, text.length - 1);
+      tasksForToday = trimmedText;
       // Reconstruct the array
       const keyValuePairs = tasksForToday.split(',');
       const taskArray = [];
@@ -79,14 +80,14 @@ document.addEventListener("DOMContentLoaded", function() {
         //} else {
         hourId = `hour${task.hour}`;
            // Construct the ID of the hour element
-         console.log("hour was correct. Hour id: ",hourId);
+        //console.log("hour was correct. Hour id: ",hourId);
         //}
         const taskId = `task${task.taskId}`;
         const taskElement = document.getElementById(taskId); // Get the task element by ID (assuming title is the ID)
         const hourElement = document.getElementById(hourId); // Get the hour element by ID
-        console.log("task div found: ", taskElement, " hourdiv found: ", hourElement);
-        console.log("task id: ", taskId, " hour: ", hourId);
         if (taskElement && hourElement) {
+          console.log("task div found: ", taskElement, " hourdiv found: ", hourElement);
+          console.log("task id: ", taskId, " hour: ", hourId);
           // Position the task relative to the hour element
           console.log("they exist ! doing the if statement");
           setPosition(taskElement, hourElement, toggleHour);
@@ -106,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
               console.log("hour was null again, what a silly hour");
               setPosition(newDiv, document.getElementById(emergencyHourId), toggleHour);
               emergencyHour++;
+console.log("new emergency hour:", emergencyHour);
             } else {
               setPosition(newDiv, hourElement, toggleHour);
             }
@@ -118,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
               console.log("togglehour: ",toggleHour);
             setPosition(taskElement, document.getElementById(emergencyHourId), toggleHour);
             emergencyHour++;
+console.log("new emergency hour:", emergencyHour);
             emergencyHourId = `hour${emergencyHour}`;
             }
             else {
