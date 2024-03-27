@@ -244,6 +244,12 @@ const dropZoneId = event.target.id;
 const dropZoneElement = document.getElementById(dropZoneId);
 dropZoneElement.style.border = `3px solid`;
 }
+    function handleDragLeave(e){
+        event.preventDefault();
+const dropZoneId = event.target.id;
+const dropZoneElement = document.getElementById(dropZoneId);
+dropZoneElement.style.border = `none`;
+    }
 
 function handleDrop(event) {
 event.preventDefault();
