@@ -174,9 +174,7 @@ console.log("new emergency hour:", emergencyHour);
     const currentHour = getCurrentHour();
       hourElement.style.color = `#000000`;
       console.log("highlighted the hour);
-    }
-
-    //iterate through all the hours, checking if it's the current one
+    };
     const hourArray = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
     for (let h = 8; h < hourArray.length; h++){
       console.log("looking for hour to highlight...");
@@ -189,7 +187,7 @@ if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
     HighlightHour(hourElementNow);
   console.log("highlighted the hour");
 }
-    }
+    };
   
     async function ConstructTheTaskObjects() {
       const tasks = [];
