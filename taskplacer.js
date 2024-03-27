@@ -225,7 +225,8 @@ function handleDrag(event) {
 let dropZoneHour = 8;
 const dropZones = document.querySelectorAll('.drop-zone');
 dropZones.forEach(dropZone => {
-  setPosition(dropZone, dropZoneHour, toggleHour);
+  console.log("in loop for drop zone", dropZone);
+  setPosition(dropZone, dropZoneHour, true);
   dropZone.addEventListener('dragover', handleDragOver);
   dropZone.addEventListener('drop', handleDrop);
   dropZoneHour++;
