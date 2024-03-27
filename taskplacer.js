@@ -179,6 +179,7 @@ console.log("new emergency hour:", emergencyHour);
     //iterate through all the hours, checking if it's the current one
     const hourArray = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
     for (let h = 8; h < hourArray.length; h++){
+      console.log("looking for hour to highlight...");
       const nowHourId = `hour${h}`;
       const hourIdToLookFor = `hour${currentHour}`; // Just the ID without HTML markup
 const hourElementNow = document.getElementById(nowHourId);
@@ -186,13 +187,9 @@ const hourElementNow = document.getElementById(nowHourId);
 if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
     console.log(hourElementNow.id, " is now !");
     HighlightHour(hourElementNow);
-  console.log("highlighted the hour);
+  console.log("highlighted the hour");
 }
     }
-
-
-
-
   
     async function ConstructTheTaskObjects() {
       const tasks = [];
