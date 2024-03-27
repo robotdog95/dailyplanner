@@ -250,7 +250,7 @@ const taskId = event.dataTransfer.getData('text/plain');
 const droppedTask = document.getElementById(taskId);
 // Handle the dropped task, update position, etc.
 const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
-const topPosition = dropZonePosition.top + window.scrollY + dropZonePosition.height;
+const topPosition = dropZonePosition.top + window.scrollY - dropZonePosition.height;
 droppedTask.style.top = `${topPosition}px`;
 // maybe add a bool to decide if the dropZone is already full??
       console.log("task has been moved");
