@@ -225,7 +225,7 @@ let dropZoneHour = 8;
 const dropZones = document.querySelectorAll('.drop-zone');
 var dropBool = true;
 dropZones.forEach(dropZone => {
-  dropZone.style.opacity= `0.3`;
+  dropZone.style.opacity= `0`;
   console.log("in loop for drop zone", dropZone);
   const dropHourId = `hour${dropZoneHour}`;
   const hourElementDrop = document.getElementById(dropHourId);
@@ -259,7 +259,7 @@ function handleDrop(event) {
     
     droppedTask.style.top = `${topPosition}px`;
     droppedTask.style.left = `${leftPosition}px`;
-    droppedTask.style.width = `300px`
+    droppedTask.style.width = `350px`
     console.log("task has been moved to ", dropZoneId);
 }
 
