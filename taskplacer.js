@@ -247,21 +247,24 @@ event.preventDefault();
     }
 
 function handleDrop(event) {
-event.preventDefault();
-const dropZoneId = event.target.id;
-const dropZoneElement = document.getElementById(dropZoneId);
-const taskId = event.dataTransfer.getData('text/plain');
-const droppedTask = document.getElementById(taskId);
-// Handle the dropped task, update position, etc.
-const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
-const topPosition = dropZonePosition.top + window.scrollY;
-const leftPosition = dropZonePosition.left + window.scrollX;
-droppedTask.style.top = `${topPosition}px`;
-droppedTask.style.left = `${leftPosition}px`;
-// maybe add a bool to decide if the dropZone is already full??
-      console.log("task has been moved to ",dropZoneId);
-  
+    event.preventDefault();
+    const dropZoneId = event.target.id;
+    const dropZoneElement = document.getElementById(dropZoneId);
+    const taskId = event.dataTransfer.getData('text/plain');
+    const droppedTask = document.getElementById(taskId);
+    
+    // Handle the dropped task, update position, etc.
+    const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
+    const topPosition = dropZonePosition.top + window.scrollY;
+    const leftPosition = dropZonePosition.left + window.scrollX;
+    
+    droppedTask.style.top = `${topPosition}px`;
+    droppedTask.style.left = `${leftPosition}px`;
+    droppedTask.style.width = `${droppedTask.offsetWidth}px`; // Ensure width remains unchanged
+    
+    console.log("task has been moved to ", dropZoneId);
 }
+
 
 
 
