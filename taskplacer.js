@@ -259,13 +259,13 @@ tasks.forEach(task => {
   const thisTaskId = task.id;
   const cookieString = getCookie('taskPositions');  
   const taskPositioning = JSON.parse(cookieString);
-  if(taskPositioning[thisTaskId]){
+  if(taskPositioning && taskPositioning[thisTaskId]){
   const thisTasksDropZoneId = taskPositioning[thisTaskId];
   moveToDropPosition(thisTaskId,thisTasksDropZoneId);
   console.log("Task ", thisTaskId, " is being moved to ", thisTasksDropZoneId);
   }
   else{
-    console.log(thisTaskId," has not been dragged yet. No cookies found");
+    console.log(thisTaskId," has no cookies yet.");
   }
 });
 
