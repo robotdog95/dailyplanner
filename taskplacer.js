@@ -277,8 +277,10 @@ function handleDrop(event) {
     console.log("task has been moved to ", dropZoneId);
 
   //push droppedTask and dropZone Id into cookieArray:
-    if('taskId' in cookieArray){
+    if(taskId in cookieArray){
       console.log("a task called ",taskId," already exists in array: ", cookieArray);
+      cookieArray.taskId = dropZoneId;
+      console.log("new cookieArray: ", cookieArray);
     }
   else{
     cookieArray.push({ [taskId]: dropZoneId });
