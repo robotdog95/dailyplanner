@@ -248,10 +248,21 @@ function moveToDropPosition(taskId, dropZoneId){
 // DROP ZONE HANDLING----------------------------------------------------------------------
 const tasks = document.querySelectorAll('.task');
 
+    //add draggable feature to all tasks and retrieve their cookie-stored positions
 tasks.forEach(task => {
   task.addEventListener('dragstart', handleDragStart);
   task.addEventListener('drag', handleDrag);
-  
+  const thisTaskId = task.id;
+  const cookieString = getCookie('taskPositions');  
+  const taskPositioning = JSON.parse(cookieString);
+  if(taskPositioning[thisTaskId]){
+  const thisTasksDropZoneId = taskPositioning[thisTaskId];
+  moveToDropPosition(thisTaskId,thisTasksDropZoneId);
+  console.log("Task ", thisTaskId, " is being moved to ", thisTasksDropZoneId);
+  }
+  else{
+    console.log(thisTaskId," has not been dragged yet. No cookies found");
+  }
 });
 
 function handleDragStart(event) {
