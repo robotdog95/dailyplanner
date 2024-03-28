@@ -293,8 +293,8 @@ function handleDrop(event) {
   //push droppedTask and dropZone Id into cookieArray:
       cookieArray[taskId] = dropZoneId;
       console.log("cookieArray: ", cookieArray);
-      setCookie('taskPositions', cookieArray, 10);
-      const cookieString = getCookie('taskPositions');  //OBJECTOBJECT OBJECT OBJECT SOLUTION HERE!!!!!!!!!!!!!!!!!!!!!
+      setCookie('taskPositions', JSON.stringify(cookieArray), 10); //OBJECTOBJECT OBJECT OBJECT SOLUTION HERE!!!!!!!!!!!!!!!!!!!!!
+      const cookieString = getCookie('taskPositions');  
       console.log(cookieString); 
       const taskPositioning = JSON.parse(cookieString);
       console.log(taskPositioning);
