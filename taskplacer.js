@@ -230,13 +230,28 @@ function setCookie(name, value, days) {
     }
   }
   return null;
-}
+};
+//MOVE TASKS TO COOKIE POSITIONS ----------------------------------------------------------
+function moveToDropPosition(taskId, dropZoneId){
+  
+    const dropZoneElement = document.getElementById(dropZoneId);
+    const droppedTask = document.getElementById(taskId);
+    const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
+    const topPosition = dropZonePosition.top + window.scrollY;
+    const leftPosition = dropZonePosition.left + window.scrollX;
+    droppedTask.style.top = `${topPosition}px`;
+    droppedTask.style.left = `${leftPosition}px`;
+    droppedTask.style.width = `320px`;
+    console.log("task has been moved to ", dropZoneId);
+  
+};
 // DROP ZONE HANDLING----------------------------------------------------------------------
 const tasks = document.querySelectorAll('.task');
 
 tasks.forEach(task => {
   task.addEventListener('dragstart', handleDragStart);
   task.addEventListener('drag', handleDrag);
+  
 });
 
 function handleDragStart(event) {
@@ -275,21 +290,8 @@ event.preventDefault();
 function handleDrop(event) {
     event.preventDefault();
     const dropZoneId = event.target.id;
-    const dropZoneElement = document.getElementById(dropZoneId);
     const taskId = event.dataTransfer.getData('text/plain');
-    const droppedTask = document.getElementById(taskId);
-    
-    // Handle the dropped task, update position, etc.
-  // i should make a separate function with this to use in cookies
-    const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
-    const topPosition = dropZonePosition.top + window.scrollY;
-    const leftPosition = dropZonePosition.left + window.scrollX;
-    
-    droppedTask.style.top = `${topPosition}px`;
-    droppedTask.style.left = `${leftPosition}px`;
-    droppedTask.style.width = `320px`;
-    console.log("task has been moved to ", dropZoneId);
-
+    moveToDropPosition(taskId, dropZoneId);
   //push droppedTask and dropZone Id into cookieArray:
       cookieArray[taskId] = dropZoneId;
       console.log("cookieArray: ", cookieArray);
