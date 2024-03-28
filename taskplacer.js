@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function() {
           console.log("highlighted the hour");
           }
         };
-        return Promise.resolve();
+        
       };
   
 
@@ -208,8 +208,6 @@ document.addEventListener("DOMContentLoaded", function() {
 //MAIN ENDS HERE---------------------------------------------------------------------------------------------------
 
   async function cookiesAndDrag(){
-    await ConstructTheTaskObjects();
-    await retrieveTasksFirst();
     
 
 // COOKIES --------------------------------------------------------------------------------
