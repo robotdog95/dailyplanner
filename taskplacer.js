@@ -202,11 +202,13 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(tasks);
       return tasks;
     };
+  return Promise.resolve();
   }
 
 //MAIN ENDS HERE---------------------------------------------------------------------------------------------------
 
   async function cookiesAndDrag(){
+    await main();
 
 // COOKIES --------------------------------------------------------------------------------
    // prepare variables for cookies
