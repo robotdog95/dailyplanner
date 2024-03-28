@@ -184,8 +184,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
 
 // MAIN STARTS HERE ----------------------------------------------------------------------------------------------------------
-  async function main() {
-  
+
     async function ConstructTheTaskObjects() {
       const tasks = [];
       // Iterate through cleanTaskArray and create a task for each object
@@ -203,15 +202,13 @@ document.addEventListener("DOMContentLoaded", function() {
       return tasks;
     };
     
-    await retrieveTasksFirst();
-    await ConstructTheTaskObjects();
-    return Promise.resolve();
-  }
+
+  
 
 //MAIN ENDS HERE---------------------------------------------------------------------------------------------------
 
   async function cookiesAndDrag(){
-    await main();
+    await ConstructTheTaskObjects();
     await retrieveTasksFirst();
     
 
@@ -328,6 +325,6 @@ function handleDrop(event) {
   
 
   retrieveTasksFirst();
-  main();
+  ConstructTheTaskObjects();
   cookiesAndDrag();
 });
