@@ -60,10 +60,101 @@ document.addEventListener("DOMContentLoaded", function() {
 
   
       //retrieve the tasks for today
-      async function retrieveTasksFirst(){
-        console.log("retrieve tasks is being run");
-        
-      };
+      async function retrieveTasksFirst() {
+        try {
+            const response = await fetch('https://robotdog95.github.io/dailyplanner/tasks.txt');
+            if (!response.ok) {
+                throw new Error('Network response was not ok loool');
+            }
+            const text = await response.text();
+            const trimmedText = text.substring(1, text.length - 1);
+            const keyValuePairs = trimmedText.split(',');
+            const taskArray = [];
+            keyValuePairs.forEach(pair => {
+                const [task, ...dateParts] = pair.replace(/[{}]/g, '').split(':');
+                const date = dateParts.join(':');
+                const cleanedTask = task.replace(/"/g, '').trim();
+                const cleanedDate = date.replace(/"/g, '').trim();
+                taskArray.push({ [cleanedTask]: cleanedDate });
+            });
+    
+            taskArray.forEach(item => {
+                const title = Object.keys(item)[0];
+                const date = item[title];
+                cleanHour(title, date);
+            });
+    
+            console.log(cleanTaskArray);
+    
+            const tasks = await ConstructTheTaskObjects();
+            var emergencyHour = 8;
+            var emergencyHourId = `hour${emergencyHour}`;
+            var toggleHour = true;
+    
+            for (const task of tasks) {
+                let hourId = `hour${task.hour}`;
+                hourId = `hour${task.hour}`;
+                const taskId = `task${task.taskId}`;
+                const taskElement = document.getElementById(taskId);
+                const hourElement = document.getElementById(hourId);
+    
+                if (taskElement && hourElement) {
+                    setPosition(taskElement, hourElement, toggleHour);
+                    taskElement.innerHTML = task.title;
+                } else {
+                    console.log("the div with the id ", taskId, "does not exist or the hour", hourId, " is invalid");
+                    if (!taskElement) {
+                        const mainDiv = document.querySelector('.main');
+                        const newDiv = document.createElement('div');
+                        newDiv.id = taskId;
+                        newDiv.classList.add('task');
+                        newDiv.innerHTML = task.title;
+                        newDiv.draggable = true;
+                        mainDiv.appendChild(newDiv);
+                        if (task.hour === null || task.hour === undefined) {
+                            setPosition(newDiv, document.getElementById(emergencyHourId), toggleHour);
+                            emergencyHour++;
+                            console.log("new emergency hour:", emergencyHour);
+                        } else {
+                            setPosition(newDiv, hourElement, toggleHour);
+                        }
+                    } else if (!hourElement) {
+                        taskElement.innerHTML = task.title;
+                        console.log("invalid hour: ", hourId, ". Moving the task to ", emergencyHourId);
+                        if (toggleHour) {
+                            setPosition(taskElement, document.getElementById(emergencyHourId), toggleHour);
+                            emergencyHour++;
+                            console.log("new emergency hour:", emergencyHour);
+                            emergencyHourId = `hour${emergencyHour}`;
+                        } else {
+                            setPosition(taskElement, document.getElementById(emergencyHourId), toggleHour);
+                        }
+                        toggleHour = !toggleHour;
+                    } else {
+                        console.log("i don't know what you expect me to do but i'm no magic man boi")
+                    }
+                }
+            }
+    
+            const hourArray = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+            for (let h = 8; h < hourArray.length + 8; h++) {
+                console.log("looking for hour to highlight...");
+                const currentHour = getCurrentHour();
+                const nowHourId = `hour${h}`;
+                const hourIdToLookFor = `hour${currentHour}`;
+                const hourElementNow = document.getElementById(nowHourId);
+    
+                if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
+                    console.log(hourElementNow.id, " is now !!");
+                    HighlightHour(hourElementNow);
+                    console.log("highlighted the hour");
+                }
+            };
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
+    };
+    
   
 
 // MAIN STARTS HERE ----------------------------------------------------------------------------------------------------------
