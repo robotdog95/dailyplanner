@@ -63,11 +63,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // MAIN STARTS HERE ----------------------------------------------------------------------------------------------------------
   async function main() {
-
+    
     // Get current hour
     console.log(currentHour);
 
     //retrieve the tasks for today
+    async function retrieveTasksFirst(){
     var tasksForToday ="";
     fetch('https://robotdog95.github.io/dailyplanner/tasks.txt')
     .then(response => {
@@ -185,6 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log("highlighted the hour");
       }
     };
+  };
   
     async function ConstructTheTaskObjects() {
       const tasks = [];
@@ -202,7 +204,10 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(tasks);
       return tasks;
     };
-  return Promise.resolve();
+    
+    await retrieveTasksFirst();
+    await ConstructTheTaskObjects();
+    return Promise.resolve();
   }
 
 //MAIN ENDS HERE---------------------------------------------------------------------------------------------------
