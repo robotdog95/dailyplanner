@@ -322,9 +322,11 @@ function handleDrop(event) {
   }
    
 
-  
+  async function main() {
+    await retrieveTasksFirst();
+    await ConstructTheTaskObjects();
+    await cookiesAndDrag();
+}
 
-  retrieveTasksFirst();
-  ConstructTheTaskObjects();
-  cookiesAndDrag();
+  main();
 });
