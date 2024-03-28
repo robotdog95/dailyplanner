@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
 
 //MAIN ENDS HERE---------------------------------------------------------------------------------------------------
-async function cookiesAndDrag(tasks){
+async function cookiesAndDrag(mTasks){
 
     
 
@@ -251,10 +251,10 @@ function moveToDropPosition(taskId, dropZoneId){
   
 };
 // DROP ZONE HANDLING----------------------------------------------------------------------
-const tasks = document.querySelectorAll('.task');
+const dTasks = document.querySelectorAll('.task');
 
     //add draggable feature to all tasks and retrieve their cookie-stored positions
-tasks.forEach(task => {
+dTasks.forEach(task => {
   task.addEventListener('dragstart', handleDragStart);
   task.addEventListener('drag', handleDrag);
   const thisTaskId = task.id;
@@ -322,7 +322,7 @@ function handleDrop(event) {
 
   async function main() {
     await retrieveTasksFirst();
-    const tasks = await ConstructTheTaskObjects();
+    const mTasks = await ConstructTheTaskObjects();
     await cookiesAndDrag(tasks); // Pass tasks array to cookiesAndDrag
 }
 
