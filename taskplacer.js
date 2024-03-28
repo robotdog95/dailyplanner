@@ -56,9 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log("setPosition done");
     };
 
-
-
-  
       //retrieve the tasks for today
       async function retrieveTasksFirst() {
         try {
@@ -157,7 +154,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
   
 
-// MAIN STARTS HERE ----------------------------------------------------------------------------------------------------------
 
     async function ConstructTheTaskObjects() {
       const tasks = [];
@@ -179,18 +175,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
   
 
-//MAIN ENDS HERE---------------------------------------------------------------------------------------------------
 async function cookiesAndDrag(mTasks){
-
-    
-
-// COOKIES --------------------------------------------------------------------------------
-   // prepare variables for cookies
-    // it should be: taskId, dropZoneId, (days)
-    // so it should be an array of key = taskId, value = dropZoneId
-    
-    //initialize array for cookies:
+  
     const cookieArray = {};
+  
+//set up drop zones first
+  let dropZoneHour = 8;
+  const dropZones = document.querySelectorAll('.drop-zone');
+  var dropBool = true;
+  dropZones.forEach(dropZone => {
+  dropZone.style.opacity= `0`;
+  console.log("in loop for drop zone", dropZone);
+  const dropHourId = `hour${dropZoneHour}`;
+  const hourElementDrop = document.getElementById(dropHourId);
+  setPosition(dropZone, hourElementDrop, dropBool);
+  dropZone.addEventListener('dragover', handleDragOver);
+  dropZone.addEventListener('drop', handleDrop);
+  dropBool = !dropBool;
+  if(dropBool){
+    dropZoneHour++;
+  }
+});
   
     // set a cookie
 function setCookie(name, value, days) {
@@ -218,15 +223,26 @@ function moveToDropPosition(taskId, dropZoneId){
     const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
     const topPosition = dropZonePosition.top + window.scrollY;
     const leftPosition = dropZonePosition.left + window.scrollX;
+    console.log("task to be moved: ",droppedTask,"target zone: ",dropZoneElement);
     droppedTask.style.top = `${topPosition}px`;
     droppedTask.style.left = `${leftPosition}px`;
     droppedTask.style.width = `320px`;
-    console.log("task has been moved to ", dropZoneId);
+    console.log("target coordinates: TOP: ",topPosition, "LEFT: ",leftPosition);
+    console.log(droppedTask," has been moved to ", dropZoneId);
   
 };
 // DROP ZONE HANDLING----------------------------------------------------------------------
 const dTasks = document.querySelectorAll('.task');
 
+
+
+function handleDragStart(event) {
+  event.dataTransfer.setData('text/plain', event.target.id);
+}
+
+function handleDrag(event) {
+  // Update task position or perform other actions as needed
+}
     //add draggable feature to all tasks and retrieve their cookie-stored positions
 dTasks.forEach(task => {
   task.addEventListener('dragstart', handleDragStart);
@@ -243,32 +259,6 @@ dTasks.forEach(task => {
     console.log(thisTaskId," has no cookies yet.");
   }
 });
-
-function handleDragStart(event) {
-  event.dataTransfer.setData('text/plain', event.target.id);
-}
-
-function handleDrag(event) {
-  // Update task position or perform other actions as needed
-}
-    
-let dropZoneHour = 8;
-const dropZones = document.querySelectorAll('.drop-zone');
-var dropBool = true;
-dropZones.forEach(dropZone => {
-  dropZone.style.opacity= `0`;
-  console.log("in loop for drop zone", dropZone);
-  const dropHourId = `hour${dropZoneHour}`;
-  const hourElementDrop = document.getElementById(dropHourId);
-  setPosition(dropZone, hourElementDrop, dropBool);
-  dropZone.addEventListener('dragover', handleDragOver);
-  dropZone.addEventListener('drop', handleDrop);
-  dropBool = !dropBool;
-  if(dropBool){
-    dropZoneHour++;
-  }
-});
-
 function handleDragOver(event) {
 event.preventDefault();
 }
