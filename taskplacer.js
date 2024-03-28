@@ -4,7 +4,13 @@ document.addEventListener("DOMContentLoaded", function() {
   //define variables necessary for function
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
   const cleanTaskArray = [];
-  const currentHour = getCurrentHour();
+
+      //change the color of the hour
+      function HighlightHour(hourElement){
+        const currentHour = getCurrentHour();
+        hourElement.style.color = `#000000`;
+        console.log("highlighted the hour");
+      };
 
     function getCurrentHour() {
       const currentDate = new Date();
@@ -50,12 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log("setPosition done");
     };
 
-    //change the color of the hour
-  function HighlightHour(hourElement){
-      const currentHour = getCurrentHour();
-      hourElement.style.color = `#000000`;
-      console.log("highlighted the hour");
-    };
+
 
   
   
@@ -176,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const hourArray = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
     for (let h = 8; h < hourArray.length+8; h++){
       console.log("looking for hour to highlight...");
+      const currentHour = getCurrentHour();
       const nowHourId = `hour${h}`;
       const hourIdToLookFor = `hour${currentHour}`; // Just the ID without HTML markup
       const hourElementNow = document.getElementById(nowHourId);
@@ -214,6 +216,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   async function cookiesAndDrag(){
     await main();
+    await retrieveTasksFirst();
 
 // COOKIES --------------------------------------------------------------------------------
    // prepare variables for cookies
