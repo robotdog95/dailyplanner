@@ -64,9 +64,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // MAIN STARTS HERE ----------------------------------------------------------------------------------------------------------
   async function main() {
-    
-    // Get current hour
-    console.log(currentHour);
 
     //retrieve the tasks for today
     async function retrieveTasksFirst(){
