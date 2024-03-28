@@ -280,7 +280,7 @@ function handleDrop(event) {
     console.log("task has been moved to ", dropZoneId);
 
   //push droppedTask and dropZone Id into cookieArray:
-      cookieArray.taskId = dropZoneId;
+      cookieArray.[taskId] = dropZoneId;
       console.log("cookieArray: ", cookieArray);
 
   }
