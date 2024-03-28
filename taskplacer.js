@@ -235,6 +235,7 @@ function handleDragStart(event) {
 function handleDrag(event) {
   // Update task position or perform other actions as needed
 }
+    
 let dropZoneHour = 8;
 const dropZones = document.querySelectorAll('.drop-zone');
 var dropBool = true;
@@ -255,9 +256,10 @@ dropZones.forEach(dropZone => {
 function handleDragOver(event) {
 event.preventDefault();
 }
-    function handleDragLeave(event){
-        event.preventDefault();
-    }
+    
+function handleDragLeave(event){
+event.preventDefault();
+}
 
 function handleDrop(event) {
     event.preventDefault();
@@ -274,19 +276,17 @@ function handleDrop(event) {
     
     droppedTask.style.top = `${topPosition}px`;
     droppedTask.style.left = `${leftPosition}px`;
-    droppedTask.style.width = `320px`
+    droppedTask.style.width = `320px`;
     console.log("task has been moved to ", dropZoneId);
 
   //push droppedTask and dropZone Id into cookieArray:
       cookieArray.taskId = dropZoneId;
       console.log("cookieArray: ", cookieArray);
 
-
-
-
-
-
   }
+  }
+   
+
   
 
   
