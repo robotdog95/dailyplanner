@@ -209,8 +209,9 @@ if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
    // prepare variables for cookies
     // it should be: taskId, dropZoneId, (days)
     // so it should be an array of key = taskId, value = dropZoneId
+    
     //initialize array for cookies:
-    const cookieArray = [];
+    const cookieArray = {};
     
     
     // set a cookie
@@ -277,16 +278,9 @@ function handleDrop(event) {
     console.log("task has been moved to ", dropZoneId);
 
   //push droppedTask and dropZone Id into cookieArray:
-    if(taskId in cookieArray){
-      console.log("a task called ",taskId," already exists in array: ", cookieArray);
       cookieArray.taskId = dropZoneId;
-      console.log("new cookieArray: ", cookieArray);
-    }
-  else{
-    cookieArray.push({ [taskId]: dropZoneId });
-    console.log(cookieArray);
-  }
-}
+      console.log("cookieArray: ", cookieArray);
+
 
 
 
