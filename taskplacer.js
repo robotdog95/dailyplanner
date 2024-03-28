@@ -323,7 +323,7 @@ function handleDrop(event) {
   async function main() {
     await retrieveTasksFirst();
     const mTasks = await ConstructTheTaskObjects();
-    await cookiesAndDrag(tasks); // Pass tasks array to cookiesAndDrag
+    await cookiesAndDrag(mTasks); // Pass tasks array to cookiesAndDrag
 }
 
   main();
