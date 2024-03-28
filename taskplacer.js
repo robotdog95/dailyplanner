@@ -295,6 +295,7 @@ function handleDrop(event) {
       console.log("cookieArray: ", cookieArray);
       setCookie('taskPositions', cookieArray, 10);
       const cookieString = getCookie('taskPositions');  //OBJECTOBJECT OBJECT OBJECT SOLUTION HERE!!!!!!!!!!!!!!!!!!!!!
+      console.log(cookieString); 
       const taskPositioning = JSON.parse(cookieString);
       console.log(taskPositioning);
   }
