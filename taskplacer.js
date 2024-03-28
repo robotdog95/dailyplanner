@@ -59,133 +59,132 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   
-  
+      //retrieve the tasks for today
+      async function retrieveTasksFirst(){
+        var tasksForToday ="";
+        fetch('https://robotdog95.github.io/dailyplanner/tasks.txt')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok loool');
+          }
+          return response.text(); // Specify that you're expecting plain text
+        })
+          
+        .then(text => {
+          const trimmedText = text.substring(1, text.length - 1);
+          tasksForToday = trimmedText;
+          // Reconstruct the array
+          const keyValuePairs = tasksForToday.split(',');
+          const taskArray = [];
+          keyValuePairs.forEach(pair => {
+              const [task, ...dateParts] = pair.replace(/[{}]/g, '').split(':');
+              const date = dateParts.join(':');
+              const cleanedTask = task.replace(/"/g, '').trim();
+              const cleanedDate = date.replace(/"/g, '').trim();
+              taskArray.push({ [cleanedTask]: cleanedDate });
+          });
+          // Parse date to get CLEAN HOURS
+          taskArray.forEach(item => {
+              const title = Object.keys(item)[0];
+              const date = item[title];
+              cleanHour(title, date);
+          });
+      
+          console.log(cleanTaskArray);
+      
+          // Call ConstructTheTaskObjects() here after cleanTaskArray is populated
+          return ConstructTheTaskObjects();
+        })
+    
+        .then(tasks => {
+          var emergencyHour = 8;
+          var emergencyHourId = `hour${emergencyHour}`;
+          var toggleHour = true;
+          for (const task of tasks) {
+            
+            console.log("in loop ");
+            console.log("hour", task.hour);
+            let hourId = `hour${task.hour}`;
+            console.log("hour id: ", hourId);
+            hourId = `hour${task.hour}`;            // Construct the ID of the hour element
+            const taskId = `task${task.taskId}`;
+            const taskElement = document.getElementById(taskId); // Get the task element by ID (assuming title is the ID)
+            const hourElement = document.getElementById(hourId); // Get the hour element by ID
+            if (taskElement && hourElement) {
+              console.log("task div found: ", taskElement, " hourdiv found: ", hourElement);
+              console.log("task id: ", taskId, " hour: ", hourId);
+              // Position the task relative to the hour element
+              console.log("they exist ! doing the if statement");
+              setPosition(taskElement, hourElement, toggleHour);
+              taskElement.innerHTML = task.title;
+            } else {
+              console.log("the div with the id ", taskId, "does not exist or the hour", hourId, " is invalid");
+              if (!taskElement) {
+                // Create a new task element
+                const mainDiv = document.querySelector('.main');
+                const newDiv = document.createElement('div');
+                newDiv.id = taskId; // Set the id attribute
+                newDiv.classList.add('task'); // Add a class to the div
+                newDiv.innerHTML = task.title;
+                newDiv.draggable = true;
+                mainDiv.appendChild(newDiv); // Append it to the body element  
+                // Place the new div
+                if (task.hour === null || task.hour === undefined) {
+                  console.log("hour was null again, what a silly hour");
+                  setPosition(newDiv, document.getElementById(emergencyHourId), toggleHour);
+                  emergencyHour++;
+                  console.log("new emergency hour:", emergencyHour);
+                } else {
+                  setPosition(newDiv, hourElement, toggleHour);
+                }
+              } else if (!hourElement) {
+                //move to emergency hour
+                taskElement.innerHTML = task.title;
+                console.log("invalid hour: ", hourId, ". Moving the task to ", emergencyHourId);
+                if(toggleHour)
+                {
+                  console.log("togglehour: ",toggleHour);
+                setPosition(taskElement, document.getElementById(emergencyHourId), toggleHour);
+                emergencyHour++;
+                console.log("new emergency hour:", emergencyHour);
+                emergencyHourId = `hour${emergencyHour}`;
+                }
+                else {
+                  setPosition(taskElement, document.getElementById(emergencyHourId), toggleHour);
+                  console.log("else. togglehour: ",toggleHour);
+                }
+                toggleHour = !toggleHour;
+              }
+              else {
+                console.log("i don't know what you expect me to do but i'm no magic man boi")
+              }
+            }
+          }
+        })
+        .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+        
+        const hourArray = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+        for (let h = 8; h < hourArray.length+8; h++){
+          console.log("looking for hour to highlight...");
+          const currentHour = getCurrentHour();
+          const nowHourId = `hour${h}`;
+          const hourIdToLookFor = `hour${currentHour}`; // Just the ID without HTML markup
+          const hourElementNow = document.getElementById(nowHourId);
+    
+          if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
+          console.log(hourElementNow.id, " is now !!");
+          HighlightHour(hourElementNow);
+          console.log("highlighted the hour");
+          }
+        };
+        return Promise.resolve();
+      };
   
 
 // MAIN STARTS HERE ----------------------------------------------------------------------------------------------------------
   async function main() {
-
-    //retrieve the tasks for today
-    async function retrieveTasksFirst(){
-    var tasksForToday ="";
-    fetch('https://robotdog95.github.io/dailyplanner/tasks.txt')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok loool');
-      }
-      return response.text(); // Specify that you're expecting plain text
-    })
-      
-    .then(text => {
-      const trimmedText = text.substring(1, text.length - 1);
-      tasksForToday = trimmedText;
-      // Reconstruct the array
-      const keyValuePairs = tasksForToday.split(',');
-      const taskArray = [];
-      keyValuePairs.forEach(pair => {
-          const [task, ...dateParts] = pair.replace(/[{}]/g, '').split(':');
-          const date = dateParts.join(':');
-          const cleanedTask = task.replace(/"/g, '').trim();
-          const cleanedDate = date.replace(/"/g, '').trim();
-          taskArray.push({ [cleanedTask]: cleanedDate });
-      });
-      // Parse date to get CLEAN HOURS
-      taskArray.forEach(item => {
-          const title = Object.keys(item)[0];
-          const date = item[title];
-          cleanHour(title, date);
-      });
-  
-      console.log(cleanTaskArray);
-  
-      // Call ConstructTheTaskObjects() here after cleanTaskArray is populated
-      return ConstructTheTaskObjects();
-    })
-
-    .then(tasks => {
-      var emergencyHour = 8;
-      var emergencyHourId = `hour${emergencyHour}`;
-      var toggleHour = true;
-      for (const task of tasks) {
-        
-        console.log("in loop ");
-        console.log("hour", task.hour);
-        let hourId = `hour${task.hour}`;
-        console.log("hour id: ", hourId);
-        hourId = `hour${task.hour}`;            // Construct the ID of the hour element
-        const taskId = `task${task.taskId}`;
-        const taskElement = document.getElementById(taskId); // Get the task element by ID (assuming title is the ID)
-        const hourElement = document.getElementById(hourId); // Get the hour element by ID
-        if (taskElement && hourElement) {
-          console.log("task div found: ", taskElement, " hourdiv found: ", hourElement);
-          console.log("task id: ", taskId, " hour: ", hourId);
-          // Position the task relative to the hour element
-          console.log("they exist ! doing the if statement");
-          setPosition(taskElement, hourElement, toggleHour);
-          taskElement.innerHTML = task.title;
-        } else {
-          console.log("the div with the id ", taskId, "does not exist or the hour", hourId, " is invalid");
-          if (!taskElement) {
-            // Create a new task element
-            const mainDiv = document.querySelector('.main');
-            const newDiv = document.createElement('div');
-            newDiv.id = taskId; // Set the id attribute
-            newDiv.classList.add('task'); // Add a class to the div
-            newDiv.innerHTML = task.title;
-            newDiv.draggable = true;
-            mainDiv.appendChild(newDiv); // Append it to the body element  
-            // Place the new div
-            if (task.hour === null || task.hour === undefined) {
-              console.log("hour was null again, what a silly hour");
-              setPosition(newDiv, document.getElementById(emergencyHourId), toggleHour);
-              emergencyHour++;
-              console.log("new emergency hour:", emergencyHour);
-            } else {
-              setPosition(newDiv, hourElement, toggleHour);
-            }
-          } else if (!hourElement) {
-            //move to emergency hour
-            taskElement.innerHTML = task.title;
-            console.log("invalid hour: ", hourId, ". Moving the task to ", emergencyHourId);
-            if(toggleHour)
-            {
-              console.log("togglehour: ",toggleHour);
-            setPosition(taskElement, document.getElementById(emergencyHourId), toggleHour);
-            emergencyHour++;
-            console.log("new emergency hour:", emergencyHour);
-            emergencyHourId = `hour${emergencyHour}`;
-            }
-            else {
-              setPosition(taskElement, document.getElementById(emergencyHourId), toggleHour);
-              console.log("else. togglehour: ",toggleHour);
-            }
-            toggleHour = !toggleHour;
-          }
-          else {
-            console.log("i don't know what you expect me to do but i'm no magic man boi")
-          }
-        }
-      }
-    })
-    .catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
-    });
-    
-    const hourArray = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
-    for (let h = 8; h < hourArray.length+8; h++){
-      console.log("looking for hour to highlight...");
-      const currentHour = getCurrentHour();
-      const nowHourId = `hour${h}`;
-      const hourIdToLookFor = `hour${currentHour}`; // Just the ID without HTML markup
-      const hourElementNow = document.getElementById(nowHourId);
-
-      if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
-      console.log(hourElementNow.id, " is now !!");
-      HighlightHour(hourElementNow);
-      console.log("highlighted the hour");
-      }
-    };
-  };
   
     async function ConstructTheTaskObjects() {
       const tasks = [];
@@ -214,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
   async function cookiesAndDrag(){
     await main();
     await retrieveTasksFirst();
+    
 
 // COOKIES --------------------------------------------------------------------------------
    // prepare variables for cookies
@@ -327,7 +327,7 @@ function handleDrop(event) {
 
   
 
-  
+  retrieveTasksFirst();
   main();
   cookiesAndDrag();
 });
