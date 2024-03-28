@@ -206,8 +206,8 @@ document.addEventListener("DOMContentLoaded", function() {
   
 
 //MAIN ENDS HERE---------------------------------------------------------------------------------------------------
+async function cookiesAndDrag(tasks){
 
-  async function cookiesAndDrag(){
     
 
 // COOKIES --------------------------------------------------------------------------------
@@ -322,8 +322,8 @@ function handleDrop(event) {
 
   async function main() {
     await retrieveTasksFirst();
-    await ConstructTheTaskObjects();
-    await cookiesAndDrag();
+    const tasks = await ConstructTheTaskObjects();
+    await cookiesAndDrag(tasks); // Pass tasks array to cookiesAndDrag
 }
 
   main();
