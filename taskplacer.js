@@ -205,6 +205,10 @@ if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
       console.log(tasks);
       return tasks;
     };
+  }
+
+  async function cookiesAndDrag(){
+
 // COOKIES --------------------------------------------------------------------------------
    // prepare variables for cookies
     // it should be: taskId, dropZoneId, (days)
@@ -319,4 +323,5 @@ function handleDrop(event) {
 
   
   main();
+  cookiesAndDrag();
 });
