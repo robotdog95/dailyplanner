@@ -205,7 +205,20 @@ if (hourElementNow && hourElementNow.id === hourIdToLookFor) {
       console.log(tasks);
       return tasks;
     };
-
+// COOKIES --------------------------------------------------------------------------------
+   // prepare variables for cookies
+    // it should be: taskId, dropZoneId, (days)
+    // so it should be an array of key = taskId, value = dropZoneId
+    //initialize array for cookies:
+    const cookieArray = [];
+    
+    
+    // set a cookie
+function setCookie(name, value, days) {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+};
 // DROP ZONE HANDLING----------------------------------------------------------------------
 const tasks = document.querySelectorAll('.task');
 
@@ -253,6 +266,7 @@ function handleDrop(event) {
     const droppedTask = document.getElementById(taskId);
     
     // Handle the dropped task, update position, etc.
+  // i should make a separate function with this to use in cookies
     const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
     const topPosition = dropZonePosition.top + window.scrollY;
     const leftPosition = dropZonePosition.left + window.scrollX;
@@ -261,6 +275,10 @@ function handleDrop(event) {
     droppedTask.style.left = `${leftPosition}px`;
     droppedTask.style.width = `320px`
     console.log("task has been moved to ", dropZoneId);
+
+  //push droppedTask and dropZone Id into cookieArray:
+    cookieArray.push({ [taskId]: dropZoneId });
+    console.log(cookieArray);
 }
 
 
