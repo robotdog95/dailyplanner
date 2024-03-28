@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
   //ALL FUNCTIONS GO HERE---------------------------------------------------------------------------------------------------
+    
+  //define variables necessary for function
+  const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
+  const cleanTaskArray = [];
+  const currentHour = getCurrentHour();
 
     function getCurrentHour() {
       const currentDate = new Date();
@@ -58,16 +63,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // MAIN STARTS HERE ----------------------------------------------------------------------------------------------------------
   async function main() {
-  
-    const cleanTaskArray = [];
-  
+
     // Get current hour
-    const currentHour = getCurrentHour();
     console.log(currentHour);
 
-    //define colors
-    const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
-    
     //retrieve the tasks for today
     var tasksForToday ="";
     fetch('https://robotdog95.github.io/dailyplanner/tasks.txt')
