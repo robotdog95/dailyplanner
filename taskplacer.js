@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var toggleHour = true;
     
             for (const task of tasks) {
-                
+                console.log("in loop for task ", task);
                 let hourId = `hour${task.hour}`;
                 hourId = `hour${task.hour}`;
                 const taskId = `task${task.taskId}`;
@@ -123,7 +123,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     setPosition(taskElement, hourElement, toggleHour);
                     taskElement.innerHTML = task.title;
                     tasksAndIds[taskId] = hourId;
-                } else {
+                }
+                else {
                     console.log("the div with the id ", taskId, "does not exist or the hour", hourId, " is invalid");
                     if (!taskElement) {
                         const mainDiv = document.querySelector('.main');
@@ -161,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         console.log("i don't know what you expect me to do but i'm no magic man boi")
                     }
                 }
-                console.log(tasksAndIds);
+                console.log("tasks and id look like this: ",tasksAndIds);
                 return tasksAndIds;
             }
     
