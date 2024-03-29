@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
   //define variables necessary for function
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
   const cleanTaskArray = [];
+  async function retrieveCookiesFirst(){
   const beginningCookieString = getCookie('newCookiesWithoutDrag');
   const parsedBeginningCookieString = JSON.parse(beginningCookieString);
   if(parsedBeginningCookieString){
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
   else{
     const tasksAndIds = {};
   }
+};
   // check if cookie entry already exists
   function checkCookie(name, entry) {
     console.log("checking for entry", entry, "in cookies:", name);
@@ -414,6 +416,7 @@ function handleDrop(event) {
 
 
   async function main() {
+    await retrieveCookiesFirst();
     await retrieveTasksFirst();
     const mTasks = await ConstructTheTaskObjects();
     await cookiesAndDrag(mTasks); // Pass tasks array to cookiesAndDrag
