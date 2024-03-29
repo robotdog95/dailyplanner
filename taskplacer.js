@@ -300,7 +300,9 @@ dTasks.forEach(task => {
     const parsedAllTasks = JSON.parse(allTasksCookieString);
     console.log("alltasks cookie string:",parsedAllTasks);
     console.log("taskId used to retrieve cookie: ",thisTaskId);
-    entryForThisTask.push(parsedAllTasks.thisTaskId);
+    const taskCoordinates = parsedAllTasks.thisTaskId;
+    console.log("coordinates for this task: ", taskCoordinates);
+    entryForThisTask.push(taskCoordinates);
     console.log("the position of this task was: ", entryForThisTask);
     }
     else{
