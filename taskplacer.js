@@ -107,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(cleanTaskArray);
     
             const tasks = await ConstructTheTaskObjects();
+            console.log("tasks processed by ConstructTheTaskObjects: ",tasks);
             var emergencyHour = 8;
             var emergencyHourId = `hour${emergencyHour}`;
             var toggleHour = true;
