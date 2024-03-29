@@ -312,9 +312,10 @@ dTasks.forEach(task => {
     const allTasksCookieString = getCookie('newCookiesWithoutDrag');
     const parsedAllTasksCookieString = JSON.parse(allTasksCookieString);
     console.log("retrieved cookies for undragged tasks: ", parsedAllTasksCookieString);
-    var checkedCookie = checkCookie('newCookiesWithoutDrag', thisTaskId);
-    console.log(checkedCookie);
+    
     if(parsedAllTasksCookieString){
+      var checkedCookie = checkCookie('newCookiesWithoutDrag', thisTaskId);
+      console.log(checkedCookie);
       const undraggedTaskHourId = parsedAllTasksCookieString[thisTaskId];
       console.log("this task's hour ID from previous session: ",undraggedTaskHourId)
       if(undraggedTaskHourId){ //check if tasks has an hour id. If not, it means the task doesn't exist
