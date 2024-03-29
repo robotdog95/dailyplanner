@@ -269,6 +269,16 @@ function moveToDropPosition(taskId, dropZoneId){
     console.log(droppedTask," has been moved to ", dropZoneId);
   
 };
+
+function moveToInitialPosition(taskId, x, y){
+  const taskElementToMove = document.getElementById(taskId);
+  const topPosition = y + window.scrollY;
+  const leftPosition = x + window.scrollX;
+  taskElementToMove.style.top =  `${topPosition}px`;
+  taskElementToMove.style.left =  `${leftPosition}px`;
+  taskElementToMove.style.width = `320px`;
+  console.log("moved the task ",taskId, "to its initial position: ", x," and ", y);
+}
 // DROP ZONE HANDLING----------------------------------------------------------------------
 const dTasks = document.querySelectorAll('.task');
 
@@ -305,9 +315,18 @@ dTasks.forEach(task => {
     const trimmedTaskId = thisTaskId.trim();
     console.log("taskId used to retrieve cookie: ",trimmedTaskId);
     const taskCoordinates = parsedAllTasks[trimmedTaskId];
+    if (taskCoordinates){
     console.log("coordinates for this task (brackets): ", taskCoordinates);
     entryForThisTask.push(taskCoordinates);
     console.log("the position of this task was: ", entryForThisTask);
+    const x = entryForThisTask[0];
+    const y = entryForThisTask[1];
+    moveToInitialPosition(thisTaskId,x,y);
+
+    }
+    else{
+      console.log("task has no cookies. Should be because it doesn't exist.")
+    }
     }
     else{
       console.log("no cookies at all bro");
