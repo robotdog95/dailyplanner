@@ -209,7 +209,7 @@ async function cookiesWithoutDrag(mTasks){
     const thisTaskId = task.id;
     const hasContent = task.textContent.trim() !== '';
     if(hasContent){
-      
+    const hourElement = document.querySelectorAll('.hour');
     const thisTaskRect = task.getBoundingClientRect(); // Get position of the drop zone
     const hourId = hourElement.id; // Get the corresponding hour
     console.log(thisTaskId, "is assigned to ",hourId);
