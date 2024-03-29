@@ -292,6 +292,16 @@ dTasks.forEach(task => {
   }
   else{
     console.log(thisTaskId," has no cookies yet.");
+    //yes, this won't work if there are no cookies yet but it will be just for the first run. Then it will be fine.
+    const allTasksCookieString = getCookie('undraggedTaskPositions');
+    if (allTasksCookieString){
+    const parsedAllTasks = JSON.parse(allTasksCookieString);
+    const entryForThisTask = parsedAllTasks.thisTaskId;
+    console.log("the position of this task was: ", entryForThisTask);
+    }
+    else{
+      console.log("no cookies at all bro");
+    }
   }
 });
 function handleDragOver(event) {
@@ -317,12 +327,12 @@ function handleDrop(event) {
       console.log(taskPositioning);
   }
   }
-   
+  
+
 
   async function main() {
     await retrieveTasksFirst();
     const mTasks = await ConstructTheTaskObjects();
-    
     await cookiesAndDrag(mTasks); // Pass tasks array to cookiesAndDrag
     await cookiesWithoutDrag(mTasks);
 }
