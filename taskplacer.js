@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
   function setPosition(task, hour, toggle) {
+    if(hour){
       const hourPosition = hour.getBoundingClientRect(); // Get position of the hour element
       const color = colorArray[randomColor(colorArray.length)];
       console.log(color);
@@ -129,7 +130,10 @@ document.addEventListener("DOMContentLoaded", function() {
       task.style.top = `${topPosition+15}px`; //15 should be replaced by a calculation depending on the size of the hour div
       task.style.backgroundColor = `#${color}`;
       
-      console.log("setPosition done");
+      console.log("setPosition done");}
+    else{
+      console.log("hour was null. Could not set position");
+    }
     };
 
 
@@ -315,7 +319,7 @@ async function cookiesAndDrag(mTasks){
   const dropZones = document.querySelectorAll('.drop-zone');
   var dropBool = true;
   dropZones.forEach(dropZone => {
-    if (dropZone.id){
+    if (dropZone.id != "later"){
   dropZone.style.opacity= `0`;
   console.log("in loop for drop zone", dropZone);
   const dropHourId = `hour${dropZoneHour}`;
