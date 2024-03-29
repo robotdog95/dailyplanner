@@ -299,9 +299,12 @@ dTasks.forEach(task => {
     if (allTasksCookieString){
     const parsedAllTasks = JSON.parse(allTasksCookieString);
     console.log("alltasks cookie string:",parsedAllTasks);
-    console.log("taskId used to retrieve cookie: ",thisTaskId);
-    const taskCoordinates = parsedAllTasks.thisTaskId;
-    console.log("coordinates for this task: ", taskCoordinates);
+    trimmedTaskId = thisTaskId.trim();
+    console.log("taskId used to retrieve cookie: ",trimmedTaskId);
+    const taskCoordinates1 = parsedAllTasks.trimmedTaskId;
+    const taskCoordinates2 = parsedAllTasks[trimmedTaskId];
+    console.log("coordinates for this task (no brackets): ", taskCoordinates1);
+    console.log("coordinates for this task (brackets): ", taskCoordinates2);
     entryForThisTask.push(taskCoordinates);
     console.log("the position of this task was: ", entryForThisTask);
     }
