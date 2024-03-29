@@ -309,8 +309,9 @@ dTasks.forEach(task => {
     //yes, this won't work if there are no cookies yet but it will be just for the first run. Then it will be fine.
     const entryForThisTask = [];
     const allTasksCookieString = getCookie('undraggedTaskPositions');
-    if (allTasksCookieString){
     const parsedAllTasks = JSON.parse(allTasksCookieString);
+    if (allTasksCookieString){
+    
     console.log("alltasks cookie string:",parsedAllTasks);
     const trimmedTaskId = thisTaskId.trim();
     console.log("taskId used to retrieve cookie: ",trimmedTaskId);
@@ -322,7 +323,9 @@ dTasks.forEach(task => {
     const x = taskCoordinates[0];
     const y = taskCoordinates[1];
     moveToInitialPosition(thisTaskId,x,y);
-
+    //i should then update the cookies again because c'est n'imp après
+    parsedAllTasks[trimmedTaskId] = taskCoordinates;
+    setCookie('undraggedTaskPositions', parsedAllTasks, 10);
     }
     else{
       console.log("task has no cookies. Should be because it doesn't exist.")
