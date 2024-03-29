@@ -191,7 +191,6 @@ async function cookiesWithoutDrag(mTasks){
   }
   
 
-}
 
 async function cookiesAndDrag(mTasks){
   
