@@ -6,12 +6,30 @@ document.addEventListener("DOMContentLoaded", function() {
   const cleanTaskArray = [];
   const tasksAndIds = {};
 
+  // check if cookie entry already exists
+  function checkCookie(name, entry)
+  {
+    console.log("checking for cookies...");
+    const cookieString = getCookie(name);
+    const parsedCookieString = JSON.parse(cookieString);
+    const thisEntry = parsedCookieString.entry;
+    console.log("cookie string: ", parsedCookieString);
+    if(entry){
+      console.log(entry, "has been found: ",thisEntry);
+      return true;
+    }
+    else{
+      console.log(entry, "is not in cookies: ", thisEntry);
+      return false;
+    }
+  }
   // set a cookie
   function setCookie(name, value, days) {
     const expires = new Date();
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
     document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
   };
+
 
   // get a cookie
   function getCookie(name) {
@@ -281,6 +299,8 @@ dTasks.forEach(task => {
   console.log("adding draggable feature and checking for initial position for ", thisTaskId);
   const cookieString = getCookie('taskPositions');  
   const taskPositioning = JSON.parse(cookieString);
+  var checkedCookie = checkCookie('newCookiesWithoutDrag', thisTaskId);
+  console.log(checkedCookie);
   if(taskPositioning && taskPositioning[thisTaskId]){
   const thisTasksDropZoneId = taskPositioning[thisTaskId];
   moveToDropPosition(thisTaskId,thisTasksDropZoneId);
