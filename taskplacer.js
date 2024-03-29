@@ -187,7 +187,7 @@ async function cookiesWithoutDrag(mTasks){
   allTasks.forEach(task => {
     const thisTaskId = task.id;
     const thisTaskRect = task.getBoundingClientRect(); // Get position of the drop zone
-    cookieArrayNoDrag[thisTaskId] = thisTaskId;
+    cookieArrayNoDrag[thisTaskId] = thisTaskRect;
   })
   console.log(cookieArrayNoDrag);
   //then push it in cookies
