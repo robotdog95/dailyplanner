@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", function() {
   // check if cookie entry already exists
   function checkCookie(name, entry)
   {
-    console.log("checking for cookies...");
+    console.log("checking for entry",entry, "in  cookies :",name);
     const cookieString = getCookie(name);
+    console.log("unparsed cookie string: ", cookieString);
     const parsedCookieString = JSON.parse(cookieString);
     const thisEntry = parsedCookieString.entry;
     console.log("cookie string: ", parsedCookieString);
