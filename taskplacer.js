@@ -259,16 +259,7 @@ function moveToDropPosition(taskId, dropZoneId){
   
 };
 
-function moveToInitialPosition(taskId, x, y, offsetX, offsetY){
-
-  const taskElementToMove = document.getElementById(taskId);
-  const topPosition = y + window.scrollY;
-  const leftPosition = x + window.scrollX;
-  
-  taskElementToMove.style.top =  `${topPosition + offsetY}px`;
-  taskElementToMove.style.left =  `${leftPosition + offsetX}px`;
-  taskElementToMove.style.width = `320px`;
-  console.log("moved the task ",taskId, "to its initial position: ", x," and ", y);
+function moveToInitialPosition(taskId, hourId){
 }
 // DROP ZONE HANDLING----------------------------------------------------------------------
 const dTasks = document.querySelectorAll('.task');
@@ -287,47 +278,24 @@ dTasks.forEach(task => {
   task.addEventListener('dragstart', handleDragStart);
   task.addEventListener('drag', handleDrag);
   const thisTaskId = task.id;
+  console.log("adding draggable feature and checking for initial position for ", thisTaskId);
   const cookieString = getCookie('taskPositions');  
   const taskPositioning = JSON.parse(cookieString);
   if(taskPositioning && taskPositioning[thisTaskId]){
   const thisTasksDropZoneId = taskPositioning[thisTaskId];
   moveToDropPosition(thisTaskId,thisTasksDropZoneId);
-  console.log("Task ", thisTaskId, " is being moved to ", thisTasksDropZoneId);
+  console.log("Task ", thisTaskId, " had been dragged in previous session and is being moved to ", thisTasksDropZoneId);
   }
   else{
-    console.log(thisTaskId," has no cookies yet.");
+    console.log(thisTaskId," has not been dragged in previous session.");
 
     //yes, this won't work if there are no cookies yet but it will be just for the first run. Then it will be fine.
-    const entryForThisTask = [];
-    const allTasksCookieString = getCookie('undraggedTaskPositions');
-    const parsedAllTasks = JSON.parse(allTasksCookieString);
-    if (allTasksCookieString){
-    
-    console.log("alltasks cookie string:",parsedAllTasks);
-    const trimmedTaskId = thisTaskId.trim();
-    const storedHourId = parsedAllTasks[trimmedTaskId].hourId; 
-    const hourElement = document.getElementById(storedHourId); //no it's null :-(
-    const hourPosition = hourElement.getBoundingClientRect();
-    const offsetX = hourPosition.left - window.scrollX;
-    const offsetY = hourPosition.top - window.scrollY;
-    console.log("taskId used to retrieve cookie: ",trimmedTaskId);
-    const taskCoordinates = parsedAllTasks[trimmedTaskId];
-    if (taskCoordinates){
-    console.log("coordinates for this task (brackets): ", taskCoordinates);
-    entryForThisTask.push(taskCoordinates);
-    console.log("the position of this task was: ", entryForThisTask);
-    const x = taskCoordinates[0];
-    const y = taskCoordinates[1];
-    moveToInitialPosition(thisTaskId,x,y,offsetX,offsetY);
-    //i should then update the cookies again because c'est n'imp après
-    parsedAllTasks[trimmedTaskId] = taskCoordinates;
-    const cookieBackToJson = JSON.stringify(parsedAllTasks);
-    setCookie('undraggedTaskPositions', cookieBackToJson, 10); //OUI MAIS----------------------------------------------------------
-    //SI LES COOKIES SONT APPELES ENCORE APRES ca va overwrite? Ou non parce que ça prend les coordonnées en temps réel?
-    }
-    else{
-      console.log("task has no cookies. Should be because it doesn't exist.")
-    }
+    const allTasksCookieString = getCookie('newCookiesWithoutDrag');
+    const parsedAllTasksCookieString = JSON.parse(allTasksCookieString);
+    console.log("retrieved cookies for undragged tasks: ", parsedAllTasksCookieString);
+    if(parsedAllTasksCookieString){
+      const undraggedTaskHourId = parsedAllTasksCookieString[thisTaskId];
+      console.log("this task's hour ID from previous session: ",undraggedTaskHourId)
     }
     else{
       console.log("no cookies at all bro");
