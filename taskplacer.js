@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
   //define variables necessary for function
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
   const cleanTaskArray = [];
+  const tasksAndIds = {};
 
   // set a cookie
   function setCookie(name, value, days) {
@@ -111,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var toggleHour = true;
     
             for (const task of tasks) {
-                const tasksAndIds = {};
+                
                 let hourId = `hour${task.hour}`;
                 hourId = `hour${task.hour}`;
                 const taskId = `task${task.taskId}`;
