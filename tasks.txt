@@ -1,1 +1,1 @@
-[{"Call Jeanne":"2024-03-29T00:00:00.000+00:00"},{"Aller a la pharmacie":"2024-03-29T00:00:00.000+00:00"},{"Racheter du tabac":"2024-03-29T00:00:00.000+00:00"},{"faire 2h de cartons":"2024-03-29T00:00:00.000+00:00"},{"Aller à la poste pour résoudre le problème signature électronique":"2024-03-29T00:00:00.000+00:00"},{"commander feuille d'or":"2024-03-29T00:00:00.000+00:00"},{"🦎 Vérifier Roseline pass plus":"2024-03-29T00:00:00.000+00:00"}]
+[{"faire 2h de cartons":"2024-03-29T00:00:00.000+00:00"},{"🦎 Vérifier Roseline pass plus":"2024-03-29T00:00:00.000+00:00"}]
