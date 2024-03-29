@@ -224,20 +224,20 @@ async function cookiesWithoutDrag(mTasks){
   //    coordinates: interestingCoordinates,
   //    hourId: hourId // Store the hour element's ID
   //};
-    };
-  })
-  console.log(cookieArrayNoDrag);
+  //  };
+  //})
+  //console.log(cookieArrayNoDrag);
   //the question is, when to do it? I have this order:
 
   //await retrieveTasksFirst(); -------------------------------------------this puts the tasks in initial position . The cookies haven't been initialized yet.
   //const mTasks = await ConstructTheTaskObjects(); -----------------------dunno
   //await cookiesAndDrag(mTasks); // Pass tasks array to cookiesAndDrag----tasks are being repositioned with cookies
   //-----------------------------------------------------------------------maybe last? i can compare the cookie array and all the tasks that haven't been put yet can be added.
-  setCookie('undraggedTaskPositions', JSON.stringify(cookieArrayNoDrag), 10);
-  const noDragCookieString = getCookie('undraggedTaskPositions');  
-      console.log("no drag cookie string: ",noDragCookieString); 
-      const parsedNoDragCookieString = JSON.parse(noDragCookieString);
-      console.log("parsed no drag cookie string: ",parsedNoDragCookieString);
+  //setCookie('undraggedTaskPositions', JSON.stringify(cookieArrayNoDrag), 10);
+  //const noDragCookieString = getCookie('undraggedTaskPositions');  
+  //    console.log("no drag cookie string: ",noDragCookieString); 
+  //    const parsedNoDragCookieString = JSON.parse(noDragCookieString);
+  //    console.log("parsed no drag cookie string: ",parsedNoDragCookieString);
 
 };
 
