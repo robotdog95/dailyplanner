@@ -5,6 +5,26 @@ document.addEventListener("DOMContentLoaded", function() {
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
   const cleanTaskArray = [];
 
+  // set a cookie
+  function setCookie(name, value, days) {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+  };
+  
+  // get a cookie
+  function getCookie(name) {
+    const cookieName = `${name}=`;
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i].trim();
+    if (cookie.indexOf(cookieName) === 0) {
+      return cookie.substring(cookieName.length, cookie.length);
+    }
+    }
+    return null;
+  };
+
       //change the color of the hour
       function HighlightHour(hourElement){
         const currentHour = getCurrentHour();
@@ -228,24 +248,7 @@ async function cookiesAndDrag(mTasks){
   }
 });
   
-    // set a cookie
-function setCookie(name, value, days) {
-  const expires = new Date();
-  expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
-};
-    // get a cookie
-    function getCookie(name) {
-  const cookieName = `${name}=`;
-  const cookies = document.cookie.split(';');
-  for (let i = 0; i < cookies.length; i++) {
-    let cookie = cookies[i].trim();
-    if (cookie.indexOf(cookieName) === 0) {
-      return cookie.substring(cookieName.length, cookie.length);
-    }
-  }
-  return null;
-};
+
 //MOVE TASKS TO COOKIE POSITIONS ----------------------------------------------------------
 function moveToDropPosition(taskId, dropZoneId){
   
