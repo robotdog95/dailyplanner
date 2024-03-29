@@ -325,7 +325,9 @@ dTasks.forEach(task => {
     moveToInitialPosition(thisTaskId,x,y);
     //i should then update the cookies again because c'est n'imp après
     parsedAllTasks[trimmedTaskId] = taskCoordinates;
-    setCookie('undraggedTaskPositions', parsedAllTasks, 10);
+    const cookieBackToJson = JSON.stringify(parsedAllTasks);
+    setCookie('undraggedTaskPositions', cookieBackToJson, 10); //OUI MAIS----------------------------------------------------------
+    //SI LES COOKIES SONT APPELES ENCORE APRES ca va overwrite? Ou non parce que ça prend les coordonnées en temps réel?
     }
     else{
       console.log("task has no cookies. Should be because it doesn't exist.")
