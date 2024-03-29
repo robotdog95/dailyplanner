@@ -4,8 +4,15 @@ document.addEventListener("DOMContentLoaded", function() {
   //define variables necessary for function
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
   const cleanTaskArray = [];
-  const tasksAndIds = {};
-
+  const beginningCookieString = getCookie('newCookiesWithoutDrag');
+  const parsedBeginningCookieString = JSON.parse(beginningCookieString);
+  if(parsedBeginningCookieString){
+  const tasksAndIds = parsedBeginningCookieString;
+  console.log("retrieved cookies from previous session: ", tasksAndIds);
+  }
+  else{
+    const tasksAndIds = {};
+  }
   // check if cookie entry already exists
   function checkCookie(name, entry) {
     console.log("checking for entry", entry, "in cookies:", name);
