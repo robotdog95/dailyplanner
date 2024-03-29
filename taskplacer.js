@@ -4,17 +4,17 @@ document.addEventListener("DOMContentLoaded", function() {
   //define variables necessary for function
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
   const cleanTaskArray = [];
-
+  const tasksAndIds = {};
   async function retrieveCookiesFirst(){
   console.log("initializing: RETRIEVECOOKIESFIRST----------------------");
   const beginningCookieString = getCookie('newCookiesWithoutDrag');
   const parsedBeginningCookieString = JSON.parse(beginningCookieString);
   if(parsedBeginningCookieString){
-  const tasksAndIds = parsedBeginningCookieString;
+  tasksAndIds = parsedBeginningCookieString;
   console.log("retrieved cookies from previous session: ", tasksAndIds);
   }
   else{
-    const tasksAndIds = {};
+    tasksAndIds = {};
     console.log("no cookies found in previous session. Initialize empty array")
   }
 };
