@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var toggleHour = true;
     
             for (const task of tasks) {
+                const tasksAndIds = {};
                 let hourId = `hour${task.hour}`;
                 hourId = `hour${task.hour}`;
                 const taskId = `task${task.taskId}`;
@@ -120,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (taskElement && hourElement) {
                     setPosition(taskElement, hourElement, toggleHour);
                     taskElement.innerHTML = task.title;
+                    tasksAndIds[taskId] = hourId;
                 } else {
                     console.log("the div with the id ", taskId, "does not exist or the hour", hourId, " is invalid");
                     if (!taskElement) {
@@ -130,12 +132,15 @@ document.addEventListener("DOMContentLoaded", function() {
                         newDiv.innerHTML = task.title;
                         newDiv.draggable = true;
                         mainDiv.appendChild(newDiv);
+                        
                         if (task.hour === null || task.hour === undefined) {
                             setPosition(newDiv, document.getElementById(emergencyHourId), toggleHour);
                             emergencyHour++;
                             console.log("new emergency hour:", emergencyHour);
+                            tasksAndIds[taskId] = hourId; //
                         } else {
                             setPosition(newDiv, hourElement, toggleHour);
+                            tasksAndIds[taskId] = hourId; //
                         }
                     } else if (!hourElement) {
                         taskElement.innerHTML = task.title;
@@ -145,14 +150,18 @@ document.addEventListener("DOMContentLoaded", function() {
                             emergencyHour++;
                             console.log("new emergency hour:", emergencyHour);
                             emergencyHourId = `hour${emergencyHour}`;
+                            tasksAndIds[taskId] = emergencyHourId; //
                         } else {
                             setPosition(taskElement, document.getElementById(emergencyHourId), toggleHour);
+                            tasksAndIds[taskId] = emergencyHourId; //
                         }
                         toggleHour = !toggleHour;
                     } else {
                         console.log("i don't know what you expect me to do but i'm no magic man boi")
                     }
                 }
+                console.log(tasksAndIds);
+                return tasksAndIds;
             }
     
             const hourArray = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
@@ -197,29 +206,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function cookiesWithoutDrag(mTasks){
 
-        //i should make another cookie, for the tasks that haven't been touched during the session. It could be an array for all the positions and then I could compare them with the other array.
-      // It's just tat i cannot use drop zones because the tasks haven't been assigned to them yet. But they are assigned to the hours. So this should work.
-      //maybeI can use the same cookie, but the value is hour instead of dropzone
-      // or maybe it would be safer to make a new array and compare them later.
   console.log("starting to populate cookies with task positions...");
   const cookieArrayNoDrag = {}; // initialize empty array
-  const allTasks = document.querySelectorAll('.task');
-  const hourElement = document.querySelectorAll('.hour');
-  console.log("all the hour elements: ", hourElement);
-  allTasks.forEach(task => {
-    const interestingCoordinates = [];
-    const thisTaskId = task.id;
-    const hourId = hourElement.id; // Get the corresponding hour
-    const hasContent = task.textContent.trim() !== '';
-    if(hasContent){
+  const tasksAndIds2 = tasksAndIds;
+  console.log(tasksAndIds2);
+  //tasksAndIds2.forEach(task => {
+  //  const interestingCoordinates = [];
+  //  const thisTaskId = task.id;
+  //  const hourId = hourElement.id; // Get the corresponding hour
+  //  const hasContent = task.textContent.trim() !== '';
+  //  if(hasContent){
 
-    const thisTaskRect = task.getBoundingClientRect(); // Get position of the drop zone
-    console.log(thisTaskId, "is assigned to ",hourId);
-    interestingCoordinates.push(thisTaskRect.left, thisTaskRect.top);
-    cookieArrayNoDrag[thisTaskId] = {
-      coordinates: interestingCoordinates,
-      hourId: hourId // Store the hour element's ID
-  };
+  //  const thisTaskRect = task.getBoundingClientRect(); // Get position of the drop zone
+  //  console.log(thisTaskId, "is assigned to ",hourId);
+  //  interestingCoordinates.push(thisTaskRect.left, thisTaskRect.top);
+  //  cookieArrayNoDrag[thisTaskId] = {
+  //    coordinates: interestingCoordinates,
+  //    hourId: hourId // Store the hour element's ID
+  //};
     };
   })
   console.log(cookieArrayNoDrag);
