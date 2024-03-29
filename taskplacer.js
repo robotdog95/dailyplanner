@@ -332,6 +332,12 @@ async function cookiesAndDrag(mTasks){
     dropZoneHour++;
   }
     }
+    else{
+      console.log("handling dropzone later: ", dropZone);
+    dropZone.addEventListener('dragover', handleDragOver);
+    dropZone.addEventListener('drop', handleDrop);
+    
+    }
 });
   
 
