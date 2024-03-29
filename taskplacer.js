@@ -292,13 +292,15 @@ dTasks.forEach(task => {
   }
   else{
     console.log(thisTaskId," has no cookies yet.");
+
     //yes, this won't work if there are no cookies yet but it will be just for the first run. Then it will be fine.
+    const entryForThisTask = [];
     const allTasksCookieString = getCookie('undraggedTaskPositions');
     if (allTasksCookieString){
     const parsedAllTasks = JSON.parse(allTasksCookieString);
     console.log("alltasks cookie string:",parsedAllTasks);
     console.log("taskId used to retrieve cookie: ",thisTaskId);
-    const entryForThisTask = parsedAllTasks.thisTaskId;
+    entryForThisTask.push(parsedAllTasks.thisTaskId);
     console.log("the position of this task was: ", entryForThisTask);
     }
     else{
