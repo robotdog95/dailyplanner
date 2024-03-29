@@ -164,9 +164,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 }
                 console.log("tasks and id look like this: ",tasksAndIds);
-                return tasksAndIds;
+                
             }
-    
+            
             const hourArray = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
             for (let h = 8; h < hourArray.length + 8; h++) {
                 console.log("looking for hour to highlight...");
@@ -181,6 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.log("highlighted the hour");
                 }
             };
+            return tasksAndIds;
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }
