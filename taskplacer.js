@@ -319,8 +319,8 @@ dTasks.forEach(task => {
     console.log("coordinates for this task (brackets): ", taskCoordinates);
     entryForThisTask.push(taskCoordinates);
     console.log("the position of this task was: ", entryForThisTask);
-    const x = entryForThisTask[0];
-    const y = entryForThisTask[1];
+    const x = taskCoordinates[0];
+    const y = taskCoordinates[1];
     moveToInitialPosition(thisTaskId,x,y);
 
     }
