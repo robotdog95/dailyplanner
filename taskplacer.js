@@ -14,13 +14,14 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("unparsed cookie string: ", cookieString);
     const parsedCookieString = JSON.parse(cookieString);
     const thisEntry = parsedCookieString.entry;
+    const stringEntry = JSON.stringify(thisEntry);
     console.log("cookie string: ", parsedCookieString);
     if(entry){
-      console.log(entry, "has been found: ",thisEntry);
+      console.log(entry, "has been found: ",stringEntry);
       return true;
     }
     else{
-      console.log(entry, "is not in cookies: ", thisEntry);
+      console.log(entry, "is not in cookies: ", stringEntry);
       return false;
     }
   }
