@@ -204,14 +204,16 @@ async function cookiesWithoutDrag(mTasks){
   console.log("starting to populate cookies with task positions...");
   const cookieArrayNoDrag = {}; // initialize empty array
   const allTasks = document.querySelectorAll('.task');
+  const hourElement = document.querySelectorAll('.hour');
+  console.log("all the hour elements: ", hourElement);
   allTasks.forEach(task => {
     const interestingCoordinates = [];
     const thisTaskId = task.id;
+    const hourId = hourElement.id; // Get the corresponding hour
     const hasContent = task.textContent.trim() !== '';
     if(hasContent){
-    const hourElement = document.querySelectorAll('.hour');
+
     const thisTaskRect = task.getBoundingClientRect(); // Get position of the drop zone
-    const hourId = hourElement.id; // Get the corresponding hour
     console.log(thisTaskId, "is assigned to ",hourId);
     interestingCoordinates.push(thisTaskRect.left, thisTaskRect.top);
     cookieArrayNoDrag[thisTaskId] = {
@@ -322,8 +324,8 @@ dTasks.forEach(task => {
     
     console.log("alltasks cookie string:",parsedAllTasks);
     const trimmedTaskId = thisTaskId.trim();
-    const storedHourId = parsedAllTasks[trimmedTaskId].hourId;
-    const hourElement = document.getElementById(storedHourId);
+    const storedHourId = parsedAllTasks[trimmedTaskId].hourId; 
+    const hourElement = document.getElementById(storedHourId); //no it's null :-(
     const hourPosition = hourElement.getBoundingClientRect();
     const offsetX = hourPosition.left - window.scrollX;
     const offsetY = hourPosition.top - window.scrollY;
