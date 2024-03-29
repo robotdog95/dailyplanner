@@ -212,7 +212,6 @@ async function cookiesWithoutDrag(mTasks){
     cookieArrayNoDrag[thisTaskId] = interestingCoordinates;
   })
   console.log(cookieArrayNoDrag);
-  //then push it in cookies
   //the question is, when to do it? I have this order:
 
   //await retrieveTasksFirst(); -------------------------------------------this puts the tasks in initial position . The cookies haven't been initialized yet.
@@ -323,8 +322,9 @@ function handleDrop(event) {
   async function main() {
     await retrieveTasksFirst();
     const mTasks = await ConstructTheTaskObjects();
-    await cookiesWithoutDrag(mTasks);
+    
     await cookiesAndDrag(mTasks); // Pass tasks array to cookiesAndDrag
+    await cookiesWithoutDrag(mTasks);
 }
 
   main();
