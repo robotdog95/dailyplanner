@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const cookieString = getCookie(name);
     console.log("unparsed cookie string:", cookieString);
     const parsedCookieString = JSON.parse(cookieString);
-    
+    if (cookieString){
     // Use bracket notation to access the property based on the entry variable
     const thisEntry = parsedCookieString[entry];
     const stringEntry = JSON.stringify(thisEntry);
@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(entry, "is not in cookies:", stringEntry);
         return true;
     }
+  }
+  else{
+    console.log("the cookie doesn't exist");
+  }
 }
 
   // set a cookie
