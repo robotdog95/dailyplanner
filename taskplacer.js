@@ -56,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log("setPosition done");
     };
 
+
+
       //retrieve the tasks for today
       async function retrieveTasksFirst() {
         try {
@@ -173,11 +175,27 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     
 
+async function cookiesWithoutDrag(mTasks){
+
+        //i should make another cookie, for the tasks that haven't been touched during the session. It could be an array for all the positions and then I could compare them with the other array.
+      // It's just tat i cannot use drop zones because the tasks haven't been assigned to them yet. But they are assigned to the hours. So this should work.
+      //maybeI can use the same cookie, but the value is hour instead of dropzone
+      // or maybe it would be safer to make a new array and compare them later.
+  console.log("starting to populate cookies with task positions...");
+  console.log(mTasks);
+  //const cookieArrayNoDrag = {}; // initialize empty array
+  //for (let i = 0; i < cleanTaskArray.length; i++) { // populate array with task positions
+  //  const taskId = 
+  //  const droppedTask = document.getElementById(taskId); 
+  //  console.log("pushing the task ", taskId," : ",droppedTask);
+  }
   
+
+}
 
 async function cookiesAndDrag(mTasks){
   
-    const cookieArray = {};
+    const cookieArray = {}; 
   
 //set up drop zones first
   let dropZoneHour = 8;
@@ -287,6 +305,7 @@ function handleDrop(event) {
   async function main() {
     await retrieveTasksFirst();
     const mTasks = await ConstructTheTaskObjects();
+    await cookiesWithoutDrag(mTasks);
     await cookiesAndDrag(mTasks); // Pass tasks array to cookiesAndDrag
 }
 
