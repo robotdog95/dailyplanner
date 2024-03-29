@@ -296,6 +296,8 @@ dTasks.forEach(task => {
     const allTasksCookieString = getCookie('undraggedTaskPositions');
     if (allTasksCookieString){
     const parsedAllTasks = JSON.parse(allTasksCookieString);
+    console.log("alltasks cookie string:",parsedAllTasks);
+    console.log("taskId used to retrieve cookie: ",thisTaskId);
     const entryForThisTask = parsedAllTasks.thisTaskId;
     console.log("the position of this task was: ", entryForThisTask);
     }
