@@ -336,9 +336,7 @@ dTasks.forEach(task => {
   const thisTasksDropZoneId = taskPositioning[thisTaskId];
   moveToDropPosition(thisTaskId,thisTasksDropZoneId);
   console.log("Task ", thisTaskId, " had been dragged in previous session and is being moved to ", thisTasksDropZoneId);
-  //logic problem here. I need to think.
-  //
-  tasksAndIds[thisTaskId] = 
+  
   }
   else{
     console.log(thisTaskId," has not been dragged in previous session.");
