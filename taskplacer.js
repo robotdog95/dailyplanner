@@ -20,10 +20,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
     if (thisEntry) {
         console.log(entry, "has been found:", stringEntry);
-        return true;
+        return false;
     } else {
         console.log(entry, "is not in cookies:", stringEntry);
-        return false;
+        return true;
     }
 }
 
@@ -145,7 +145,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (taskElement && hourElement) {
                     setPosition(taskElement, hourElement, toggleHour);
                     taskElement.innerHTML = task.title;
+                    if (checkCookie(taskId, hourId)){
+                    console.log("pushing the position into tasksAndIds")
                     tasksAndIds[taskId] = hourId;
+                    }
+                    else {
+                      console.log("tasksAndIds HAVE NOT been updated for ", taskId);
+                    }
                 }
                 else {
                     console.log("the div with the id ", taskId, "does not exist or the hour", hourId, " is invalid");
@@ -162,10 +168,22 @@ document.addEventListener("DOMContentLoaded", function() {
                             setPosition(newDiv, document.getElementById(emergencyHourId), toggleHour);
                             emergencyHour++;
                             console.log("new emergency hour:", emergencyHour);
-                            tasksAndIds[taskId] = hourId; //
+                            if (checkCookie(taskId, hourId)){
+                              console.log("pushing the position into tasksAndIds")
+                              tasksAndIds[taskId] = hourId;
+                              }
+                              else {
+                                console.log("tasksAndIds HAVE NOT been updated for ", taskId);
+                              }
                         } else {
                             setPosition(newDiv, hourElement, toggleHour);
-                            tasksAndIds[taskId] = hourId; //
+                            if (checkCookie(taskId, hourId)){
+                              console.log("pushing the position into tasksAndIds")
+                              tasksAndIds[taskId] = hourId;
+                              }
+                              else {
+                                console.log("tasksAndIds HAVE NOT been updated for ", taskId);
+                              }
                         }
                     } else if (!hourElement) {
                         taskElement.innerHTML = task.title;
@@ -175,10 +193,22 @@ document.addEventListener("DOMContentLoaded", function() {
                             emergencyHour++;
                             console.log("new emergency hour:", emergencyHour);
                             emergencyHourId = `hour${emergencyHour}`;
-                            tasksAndIds[taskId] = emergencyHourId; //
+                            if (checkCookie(taskId, hourId)){
+                              console.log("pushing the position into tasksAndIds")
+                              tasksAndIds[taskId] = hourId;
+                              }
+                              else {
+                                console.log("tasksAndIds HAVE NOT been updated for ", taskId);
+                              }
                         } else {
                             setPosition(taskElement, document.getElementById(emergencyHourId), toggleHour);
-                            tasksAndIds[taskId] = emergencyHourId; //
+                            if (checkCookie(taskId, hourId)){
+                              console.log("pushing the position into tasksAndIds")
+                              tasksAndIds[taskId] = hourId;
+                              }
+                              else {
+                                console.log("tasksAndIds HAVE NOT been updated for ", taskId);
+                              }
                         }
                         toggleHour = !toggleHour;
                     } else {
@@ -281,8 +311,7 @@ function moveToDropPosition(taskId, dropZoneId){
   
 };
 
-function moveToInitialPosition(taskId, hourId){
-}
+
 // DROP ZONE HANDLING----------------------------------------------------------------------
 const dTasks = document.querySelectorAll('.task');
 
@@ -307,6 +336,9 @@ dTasks.forEach(task => {
   const thisTasksDropZoneId = taskPositioning[thisTaskId];
   moveToDropPosition(thisTaskId,thisTasksDropZoneId);
   console.log("Task ", thisTaskId, " had been dragged in previous session and is being moved to ", thisTasksDropZoneId);
+  //logic problem here. I need to think.
+  //
+  tasksAndIds[thisTaskId] = 
   }
   else{
     console.log(thisTaskId," has not been dragged in previous session.");
