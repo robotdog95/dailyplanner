@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   else{
     console.log("the cookie doesn't exist");
+    return true;
   }
 }
 
