@@ -300,8 +300,6 @@ dTasks.forEach(task => {
   console.log("adding draggable feature and checking for initial position for ", thisTaskId);
   const cookieString = getCookie('taskPositions');  
   const taskPositioning = JSON.parse(cookieString);
-  var checkedCookie = checkCookie('newCookiesWithoutDrag', thisTaskId);
-  console.log(checkedCookie);
   if(taskPositioning && taskPositioning[thisTaskId]){
   const thisTasksDropZoneId = taskPositioning[thisTaskId];
   moveToDropPosition(thisTaskId,thisTasksDropZoneId);
@@ -314,6 +312,8 @@ dTasks.forEach(task => {
     const allTasksCookieString = getCookie('newCookiesWithoutDrag');
     const parsedAllTasksCookieString = JSON.parse(allTasksCookieString);
     console.log("retrieved cookies for undragged tasks: ", parsedAllTasksCookieString);
+    var checkedCookie = checkCookie('newCookiesWithoutDrag', thisTaskId);
+    console.log(checkedCookie);
     if(parsedAllTasksCookieString){
       const undraggedTaskHourId = parsedAllTasksCookieString[thisTaskId];
       console.log("this task's hour ID from previous session: ",undraggedTaskHourId)
