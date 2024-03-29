@@ -305,7 +305,7 @@ dTasks.forEach(task => {
     const taskCoordinates2 = parsedAllTasks[trimmedTaskId];
     console.log("coordinates for this task (no brackets): ", taskCoordinates1);
     console.log("coordinates for this task (brackets): ", taskCoordinates2);
-    entryForThisTask.push(taskCoordinates);
+    entryForThisTask.push(taskCoordinates1);
     console.log("the position of this task was: ", entryForThisTask);
     }
     else{
