@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (taskElement && hourElement) {
                     setPosition(taskElement, hourElement, toggleHour);
                     taskElement.innerHTML = task.title;
+
                     if (checkCookie(taskId, hourId)){
                     console.log("pushing the position into tasksAndIds")
                     tasksAndIds[taskId] = hourId;
@@ -173,9 +174,9 @@ document.addEventListener("DOMContentLoaded", function() {
                             setPosition(newDiv, document.getElementById(emergencyHourId), toggleHour);
                             emergencyHour++;
                             console.log("new emergency hour:", emergencyHour);
-                            if (checkCookie(taskId, hourId)){
+                            if (checkCookie(taskId, emergencyHourId)){
                               console.log("pushing the position into tasksAndIds")
-                              tasksAndIds[taskId] = hourId;
+                              tasksAndIds[taskId] = emergencyHourId;
                               }
                               else {
                                 console.log("tasksAndIds HAVE NOT been updated for ", taskId);
@@ -194,22 +195,23 @@ document.addEventListener("DOMContentLoaded", function() {
                         taskElement.innerHTML = task.title;
                         console.log("invalid hour: ", hourId, ". Moving the task to ", emergencyHourId);
                         if (toggleHour) {
+                          if (checkCookie(taskId, emergencyHourId)){
+                            console.log("pushing the position into tasksAndIds")
+                            tasksAndIds[taskId] = emergencyHourId;
+                            }
+                            else {
+                              console.log("tasksAndIds HAVE NOT been updated for ", taskId);
+                            }
                             setPosition(taskElement, document.getElementById(emergencyHourId), toggleHour);
                             emergencyHour++;
                             console.log("new emergency hour:", emergencyHour);
                             emergencyHourId = `hour${emergencyHour}`;
-                            if (checkCookie(taskId, hourId)){
-                              console.log("pushing the position into tasksAndIds")
-                              tasksAndIds[taskId] = hourId;
-                              }
-                              else {
-                                console.log("tasksAndIds HAVE NOT been updated for ", taskId);
-                              }
+                            
                         } else {
                             setPosition(taskElement, document.getElementById(emergencyHourId), toggleHour);
-                            if (checkCookie(taskId, hourId)){
+                            if (checkCookie(taskId, emergencyHourId)){
                               console.log("pushing the position into tasksAndIds")
-                              tasksAndIds[taskId] = hourId;
+                              tasksAndIds[taskId] = emergencyHourId;
                               }
                               else {
                                 console.log("tasksAndIds HAVE NOT been updated for ", taskId);
