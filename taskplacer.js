@@ -296,6 +296,22 @@ dTasks.forEach(task => {
     if(parsedAllTasksCookieString){
       const undraggedTaskHourId = parsedAllTasksCookieString[thisTaskId];
       console.log("this task's hour ID from previous session: ",undraggedTaskHourId)
+      if(undraggedTaskHourId){ //check if tasks has an hour id. If not, it means the task doesn't exist
+        const taskElement = document.getElementById(thisTaskId);
+        const hourElement = document.getElementById(undraggedTaskHourId);
+        console.log("initiating setPosition for ",taskElement, " with target: ",hourElement);
+        setPosition(taskElement, hourElement, true);
+        //prepare values for new cookie entry
+
+        tasksAndIds[thisTaskId] = undraggedTaskHourId;
+        setCookie('newCookiesWithoutDrag', JSON.stringify(tasksAndIds), 10);
+        const updatedCookieString = getCookie('newCookiesWithoutDrag');
+        const parsedUpdatedCookieString = JSON.parse(updatedCookieString);
+        console.log("updated cookies: ", parsedUpdatedCookieString);
+      }
+      else{
+        console.log("task ",thisTaskId," probably doesn't exist.")
+      }
     }
     else{
       console.log("no cookies at all bro");
