@@ -182,22 +182,16 @@ async function cookiesWithoutDrag(mTasks){
       //maybeI can use the same cookie, but the value is hour instead of dropzone
       // or maybe it would be safer to make a new array and compare them later.
   console.log("starting to populate cookies with task positions...");
-  console.log(mTasks);  //mtasks look like this:
-//0:  Object { title: "faire 2h de cartons", taskId: 0, hour: 1 }
-//1: Object { title: "Aller à la poste pour résoudre le problème signature électronique", taskId: 1, hour: 1 }
-//2: Object { title: "commander feuille d'or", taskId: 2, hour: 1 }
-
   const cookieArrayNoDrag = {}; // initialize empty array
+  const allTasks = document.querySelectorAll('.task');
+  allTasks.forEach(task => {
+    const thisTaskId = task.id;
+    const thisTaskRect = task.getBoundingClientRect(); // Get position of the drop zone
+    cookieArrayNoDrag[thisTaskId] = thisTaskId;
+  })
+  console.log(cookieArrayNoDrag);
+  //then push it in cookies
 
-  for (const mTask of mTasks) { // populate array with task positions
-  const mTaskId = `task${mTask.taskId}`;
-  let mHourId = `hour${mTask.hour}`;
-  mHourId = `hour${mTask.hour}`;
-  const mTaskElement = document.getElementById(mTaskId);
-  const mHourElement = document.getElementById(mHourId);
-  cookieArrayNoDrag[mTaskId] = mHourId;
-  };
-  console.log("cookieArrayNoDrag: ", cookieArrayNoDrag);
 };
 
 
