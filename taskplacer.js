@@ -207,9 +207,12 @@ async function cookiesWithoutDrag(mTasks){
   allTasks.forEach(task => {
     const interestingCoordinates = [];
     const thisTaskId = task.id;
+    const hasContent = task.textContent.trim() !== '';
+    if(hasContent){
     const thisTaskRect = task.getBoundingClientRect(); // Get position of the drop zone
     interestingCoordinates.push(thisTaskRect.left, thisTaskRect.top);
     cookieArrayNoDrag[thisTaskId] = interestingCoordinates;
+    };
   })
   console.log(cookieArrayNoDrag);
   //the question is, when to do it? I have this order:
@@ -301,11 +304,9 @@ dTasks.forEach(task => {
     console.log("alltasks cookie string:",parsedAllTasks);
     const trimmedTaskId = thisTaskId.trim();
     console.log("taskId used to retrieve cookie: ",trimmedTaskId);
-    const taskCoordinates1 = parsedAllTasks.trimmedTaskId;
-    const taskCoordinates2 = parsedAllTasks[trimmedTaskId];
-    console.log("coordinates for this task (no brackets): ", taskCoordinates1);
-    console.log("coordinates for this task (brackets): ", taskCoordinates2);
-    entryForThisTask.push(taskCoordinates1);
+    const taskCoordinates = parsedAllTasks[trimmedTaskId];
+    console.log("coordinates for this task (brackets): ", taskCoordinates);
+    entryForThisTask.push(taskCoordinates);
     console.log("the position of this task was: ", entryForThisTask);
     }
     else{
