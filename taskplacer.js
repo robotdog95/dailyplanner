@@ -299,7 +299,7 @@ dTasks.forEach(task => {
     if (allTasksCookieString){
     const parsedAllTasks = JSON.parse(allTasksCookieString);
     console.log("alltasks cookie string:",parsedAllTasks);
-    trimmedTaskId = thisTaskId.trim();
+    const trimmedTaskId = thisTaskId.trim();
     console.log("taskId used to retrieve cookie: ",trimmedTaskId);
     const taskCoordinates1 = parsedAllTasks.trimmedTaskId;
     const taskCoordinates2 = parsedAllTasks[trimmedTaskId];
