@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
     document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
   };
-  
+
   // get a cookie
   function getCookie(name) {
     const cookieName = `${name}=`;
@@ -205,9 +205,11 @@ async function cookiesWithoutDrag(mTasks){
   const cookieArrayNoDrag = {}; // initialize empty array
   const allTasks = document.querySelectorAll('.task');
   allTasks.forEach(task => {
+    const interestingCoordinates = [];
     const thisTaskId = task.id;
     const thisTaskRect = task.getBoundingClientRect(); // Get position of the drop zone
-    cookieArrayNoDrag[thisTaskId] = thisTaskRect;
+    interestingCoordinates.push(thisTaskRect.left, thisTaskRect.top);
+    cookieArrayNoDrag[thisTaskId] = interestingCoordinates;
   })
   console.log(cookieArrayNoDrag);
   //then push it in cookies
