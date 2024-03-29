@@ -211,39 +211,12 @@ document.addEventListener("DOMContentLoaded", function() {
 async function cookiesWithoutDrag(mTasks){
 
   console.log("starting to populate cookies with task positions...");
-  const cookieArrayNoDrag = {}; // initialize empty array
-  const tasksAndIds2 = tasksAndIds;
-  console.log(tasksAndIds2);
-  //tasksAndIds2.forEach(task => {
-  //  const interestingCoordinates = [];
-  //  const thisTaskId = task.id;
-  //  const hourId = hourElement.id; // Get the corresponding hour
-  //  const hasContent = task.textContent.trim() !== '';
-  //  if(hasContent){
+  console.log(tasksAndIds);
+  setCookie('newCookiesWithoutDrag', JSON.stringify(tasksAndIds), 10); //i just dumped the whole array into the cookie. Let's see if it works
+  const newCookieString = getCookie('newCookiesWithoutDrag');
+  console.log("new cookie: ", newCookieString);
 
-  //  const thisTaskRect = task.getBoundingClientRect(); // Get position of the drop zone
-  //  console.log(thisTaskId, "is assigned to ",hourId);
-  //  interestingCoordinates.push(thisTaskRect.left, thisTaskRect.top);
-  //  cookieArrayNoDrag[thisTaskId] = {
-  //    coordinates: interestingCoordinates,
-  //    hourId: hourId // Store the hour element's ID
-  //};
-  //  };
-  //})
-  //console.log(cookieArrayNoDrag);
-  //the question is, when to do it? I have this order:
-
-  //await retrieveTasksFirst(); -------------------------------------------this puts the tasks in initial position . The cookies haven't been initialized yet.
-  //const mTasks = await ConstructTheTaskObjects(); -----------------------dunno
-  //await cookiesAndDrag(mTasks); // Pass tasks array to cookiesAndDrag----tasks are being repositioned with cookies
-  //-----------------------------------------------------------------------maybe last? i can compare the cookie array and all the tasks that haven't been put yet can be added.
-  //setCookie('undraggedTaskPositions', JSON.stringify(cookieArrayNoDrag), 10);
-  //const noDragCookieString = getCookie('undraggedTaskPositions');  
-  //    console.log("no drag cookie string: ",noDragCookieString); 
-  //    const parsedNoDragCookieString = JSON.parse(noDragCookieString);
-  //    console.log("parsed no drag cookie string: ",parsedNoDragCookieString);
-
-};
+}
 
 
 async function cookiesAndDrag(mTasks){
