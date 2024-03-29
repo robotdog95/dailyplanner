@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
   //define variables necessary for function
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
   const cleanTaskArray = [];
-  const tasksAndIds = {};
+  var tasksAndIds = {};
   async function retrieveCookiesFirst(){
   console.log("initializing: RETRIEVECOOKIESFIRST----------------------");
   const beginningCookieString = getCookie('newCookiesWithoutDrag');
