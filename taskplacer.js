@@ -209,9 +209,15 @@ async function cookiesWithoutDrag(mTasks){
     const thisTaskId = task.id;
     const hasContent = task.textContent.trim() !== '';
     if(hasContent){
+      
     const thisTaskRect = task.getBoundingClientRect(); // Get position of the drop zone
+    const hourId = hourElement.id; // Get the corresponding hour
+    console.log(thisTaskId, "is assigned to ",hourId);
     interestingCoordinates.push(thisTaskRect.left, thisTaskRect.top);
-    cookieArrayNoDrag[thisTaskId] = interestingCoordinates;
+    cookieArrayNoDrag[thisTaskId] = {
+      coordinates: interestingCoordinates,
+      hourId: hourId // Store the hour element's ID
+  };
     };
   })
   console.log(cookieArrayNoDrag);
@@ -270,12 +276,14 @@ function moveToDropPosition(taskId, dropZoneId){
   
 };
 
-function moveToInitialPosition(taskId, x, y){
+function moveToInitialPosition(taskId, x, y, offsetX, offsetY){
+
   const taskElementToMove = document.getElementById(taskId);
   const topPosition = y + window.scrollY;
   const leftPosition = x + window.scrollX;
-  taskElementToMove.style.top =  `${topPosition}px`;
-  taskElementToMove.style.left =  `${leftPosition}px`;
+  
+  taskElementToMove.style.top =  `${topPosition + offsetY}px`;
+  taskElementToMove.style.left =  `${leftPosition + offsetX}px`;
   taskElementToMove.style.width = `320px`;
   console.log("moved the task ",taskId, "to its initial position: ", x," and ", y);
 }
@@ -314,6 +322,11 @@ dTasks.forEach(task => {
     
     console.log("alltasks cookie string:",parsedAllTasks);
     const trimmedTaskId = thisTaskId.trim();
+    const storedHourId = parsedAllTasks[trimmedTaskId].hourId;
+    const hourElement = document.getElementById(storedHourId);
+    const hourPosition = hourElement.getBoundingClientRect();
+    const offsetX = hourPosition.left - window.scrollX;
+    const offsetY = hourPosition.top - window.scrollY;
     console.log("taskId used to retrieve cookie: ",trimmedTaskId);
     const taskCoordinates = parsedAllTasks[trimmedTaskId];
     if (taskCoordinates){
@@ -322,7 +335,7 @@ dTasks.forEach(task => {
     console.log("the position of this task was: ", entryForThisTask);
     const x = taskCoordinates[0];
     const y = taskCoordinates[1];
-    moveToInitialPosition(thisTaskId,x,y);
+    moveToInitialPosition(thisTaskId,x,y,offsetX,offsetY);
     //i should then update the cookies again because c'est n'imp après
     parsedAllTasks[trimmedTaskId] = taskCoordinates;
     const cookieBackToJson = JSON.stringify(parsedAllTasks);
