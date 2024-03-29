@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", function() {
   //define variables necessary for function
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
   const cleanTaskArray = [];
+
   async function retrieveCookiesFirst(){
+  console.log("initializing: RETRIEVECOOKIESFIRST----------------------");
   const beginningCookieString = getCookie('newCookiesWithoutDrag');
   const parsedBeginningCookieString = JSON.parse(beginningCookieString);
   if(parsedBeginningCookieString){
@@ -13,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   else{
     const tasksAndIds = {};
+    console.log("no cookies found in previous session. Initialize empty array")
   }
 };
   // check if cookie entry already exists
