@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
   const cleanTaskArray = [];
   var tasksAndIds = {};
+  var cookieArray = {};
   async function retrieveCookiesFirst(){
+     
   console.log("initializing: RETRIEVECOOKIESFIRST----------------------");
   const beginningCookieString = getCookie('newCookiesWithoutDrag');
   const parsedBeginningCookieString = JSON.parse(beginningCookieString);
@@ -17,6 +19,20 @@ document.addEventListener("DOMContentLoaded", function() {
     tasksAndIds = {};
     console.log("no cookies found in previous session. Initialize empty array")
   }
+
+  const droppedCookieString = getCookie('taskPositions');
+  const parsedDroppedCookieString = JSON.parse(droppedCookieString);
+  if(parsedDroppedCookieString){
+  cookieArray = parsedDroppedCookieString;
+  console.log("retrieved cookies from previous session: ", cookieArray);
+  }
+  else{
+    cookieArray = {};
+    console.log("no dropped cookies found in previous session. Initialize empty array")
+  }
+
+  
+
 };
   // check if cookie entry already exists
   function checkCookie(name, entry) {
@@ -292,7 +308,7 @@ async function cookiesWithoutDrag(mTasks){
 
 async function cookiesAndDrag(mTasks){
   
-    const cookieArray = {}; 
+ 
   
 //set up drop zones first
   let dropZoneHour = 8;
@@ -355,7 +371,8 @@ dTasks.forEach(task => {
   const thisTasksDropZoneId = taskPositioning[thisTaskId];
   moveToDropPosition(thisTaskId,thisTasksDropZoneId);
   console.log("Task ", thisTaskId, " had been dragged in previous session and is being moved to ", thisTasksDropZoneId);
-  
+  cookieArray[thisTaskId] = thisTasksDropZoneId;
+  setCookie('taskPositions', JSON.stringify(cookieArray), 10); 
   }
   else{
     console.log(thisTaskId," has not been dragged in previous session.");
