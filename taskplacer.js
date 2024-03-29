@@ -7,24 +7,26 @@ document.addEventListener("DOMContentLoaded", function() {
   const tasksAndIds = {};
 
   // check if cookie entry already exists
-  function checkCookie(name, entry)
-  {
-    console.log("checking for entry",entry, "in  cookies :",name);
+  function checkCookie(name, entry) {
+    console.log("checking for entry", entry, "in cookies:", name);
     const cookieString = getCookie(name);
-    console.log("unparsed cookie string: ", cookieString);
+    console.log("unparsed cookie string:", cookieString);
     const parsedCookieString = JSON.parse(cookieString);
-    const thisEntry = parsedCookieString.entry;
+    
+    // Use bracket notation to access the property based on the entry variable
+    const thisEntry = parsedCookieString[entry];
     const stringEntry = JSON.stringify(thisEntry);
-    console.log("cookie string: ", parsedCookieString);
-    if(entry){
-      console.log(entry, "has been found: ",stringEntry);
-      return true;
+    console.log("cookie string:", parsedCookieString);
+    
+    if (thisEntry) {
+        console.log(entry, "has been found:", stringEntry);
+        return true;
+    } else {
+        console.log(entry, "is not in cookies:", stringEntry);
+        return false;
     }
-    else{
-      console.log(entry, "is not in cookies: ", stringEntry);
-      return false;
-    }
-  }
+}
+
   // set a cookie
   function setCookie(name, value, days) {
     const expires = new Date();
