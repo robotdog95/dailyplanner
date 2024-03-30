@@ -198,9 +198,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 const hourElement = document.getElementById(hourId);
                 if (taskElement && hourElement) {
                     setPosition(taskElement, hourElement, toggleHour);
-                    createCheckbox(taskElement);
-                    taskElement.textContent = task.title;
                     
+                    taskElement.textContent = task.title;
+                    createCheckbox(taskElement);
                     
 
 
@@ -219,9 +219,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         const newDiv = document.createElement('div');
                         newDiv.id = taskId;
                         newDiv.classList.add('task');
-                        createCheckbox(newDiv);
-                        newDiv.textContent = task.title;
                         
+                        newDiv.textContent = task.title;
+                        createCheckbox(newDiv);
                         newDiv.draggable = true;
                         mainDiv.appendChild(newDiv);
                         
@@ -247,9 +247,9 @@ document.addEventListener("DOMContentLoaded", function() {
                               }
                         }
                     } else if (!hourElement) {
-                      createCheckbox(taskElement);
+                      
                         taskElement.textContent = task.title;
-                        
+                        createCheckbox(taskElement);
                         console.log("invalid hour: ", hourId, ". Moving the task to ", emergencyHourId);
                         if (toggleHour) {
                           if (checkCookie('newCookiesWithoutDrag', taskId)){
@@ -507,15 +507,9 @@ function handleDrop(event) {
       console.log(cookieString); 
       const taskPositioning = JSON.parse(cookieString);
       console.log(taskPositioning);
-    
-
-      
-    
   }
   }
   
-
-
   async function main() {
     await retrieveCookiesFirst();
     await retrieveTasksFirst();
