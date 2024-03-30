@@ -195,8 +195,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 const hourElement = document.getElementById(hourId);
                 if (taskElement && hourElement) {
                     setPosition(taskElement, hourElement, toggleHour);
-                    taskElement.innerHTML = task.title;
                     taskElement.appendChild(checkbox);
+                    console.log("checkbox added");
+                    taskElement.innerHTML = task.title;
+                    
 
 
                     if (checkCookie('newCookiesWithoutDrag', taskId)){
@@ -214,8 +216,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         const newDiv = document.createElement('div');
                         newDiv.id = taskId;
                         newDiv.classList.add('task');
-                        newDiv.innerHTML = task.title;
                         newDiv.appendChild(checkbox);
+                        newDiv.innerHTML = task.title;
                         newDiv.draggable = true;
                         mainDiv.appendChild(newDiv);
                         
@@ -241,8 +243,10 @@ document.addEventListener("DOMContentLoaded", function() {
                               }
                         }
                     } else if (!hourElement) {
-                        taskElement.innerHTML = task.title;
                         taskElement.appendChild(checkbox);
+console.log("checkbox added");
+                        taskElement.innerHTML = task.title;
+                        
                         console.log("invalid hour: ", hourId, ". Moving the task to ", emergencyHourId);
                         if (toggleHour) {
                           if (checkCookie('newCookiesWithoutDrag', taskId)){
