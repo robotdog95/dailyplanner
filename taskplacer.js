@@ -371,7 +371,7 @@ function moveToDropPosition(taskId, dropZoneId){
     const dropZoneElement = document.getElementById(dropZoneId);
     const droppedTask = document.getElementById(taskId);
     const taskContent = droppedTask.textContent;
-    taskElement.appendChild(checkbox);
+    droppedTask.appendChild(checkbox);
     console.log("checkbox added");
     if (taskContent){
     const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
