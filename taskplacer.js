@@ -82,6 +82,21 @@ document.addEventListener("DOMContentLoaded", function() {
     return null;
   };
 
+
+  //remove empty tasks
+  function removeEmptyTasks(taskArray){
+    
+    taskArray.forEach(item => {
+      const taskElement = document.getElementById(item.id);
+      const taskContent = taskElement.innerHTML;
+      console.log(taskContent);
+      if(!taskContent){
+        console.log("empty task: ",taskElement)
+      }
+      
+  });
+    
+  };
       //change the color of the hour
       function HighlightHour(hourElement){
         const currentHour = getCurrentHour();
@@ -347,6 +362,8 @@ function moveToDropPosition(taskId, dropZoneId){
   
     const dropZoneElement = document.getElementById(dropZoneId);
     const droppedTask = document.getElementById(taskId);
+    const taskContent = droppedTask.innerHTML;
+    if (taskContent){
     const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
     const topPosition = dropZonePosition.top + window.scrollY;
     const leftPosition = dropZonePosition.left + window.scrollX;
@@ -356,7 +373,10 @@ function moveToDropPosition(taskId, dropZoneId){
     droppedTask.style.width = `320px`;
     console.log("target coordinates: TOP: ",topPosition, "LEFT: ",leftPosition);
     console.log(droppedTask," has been moved to ", dropZoneId);
-  
+    }
+    else{
+      console.log("attempted to move an empty task : ", taskId, ". The task has not been moved");
+    }
 };
 
 
