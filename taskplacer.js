@@ -362,14 +362,14 @@ function moveToDropPosition(taskId, dropZoneId){
     console.log("task to be moved: ",droppedTask,"target zone: ",dropZoneElement);
     if(dropZoneId == "later"){
       var numberOfTasksInThisZone = dropZoneLaterContent.length;
-      var offset = `${numberOfTasksInThisZone*55}`;
+      var offset = `${numberOfTasksInThisZone*65}`;
       console.log("offset for this task: ",offset);
-      var offsetTopPosition = topPosition + offset;
+      var offsetTopPosition = topPosition + parseInt(offset);
       console.log("top position for this task: ",offsetTopPosition);
       droppedTask.style.top = `${offsetTopPosition}px`;
       droppedTask.style.left = `${leftPosition}px`;
       droppedTask.style.width = `320px`;
-      console.log("target coordinates: TOP: ",topPosition, "LEFT: ",leftPosition);
+      console.log("target coordinates: TOP: ",offsetTopPosition, "LEFT: ",leftPosition);
       console.log(droppedTask," has been moved to ", dropZoneId);
     }
     else{
