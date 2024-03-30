@@ -438,6 +438,13 @@ function handleDrop(event) {
       dropZoneLaterContent.push(taskId);
       console.log("dropzonelater array: ",dropZoneLaterContent);
     }
+    if (dropZoneLaterContent.includes(taskId)&&dropZoneId != "later"){
+      var index = dropZoneLaterContent.indexOf(taskId);
+      if (index > -1) { // only splice array when item is found
+        dropZoneLaterContent.splice(index, 1); // 2nd parameter means remove one item only
+        console.log("removed ", taskId, "from later drop zone. New list of taks in this drop zone: ",dropZoneLaterContent);
+      }
+    }
     
     moveToDropPosition(taskId, dropZoneId);
   //push droppedTask and dropZone Id into cookieArray:
