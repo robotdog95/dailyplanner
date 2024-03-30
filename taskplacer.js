@@ -3,10 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
   // define the checkbox
-  // Create a checkbox element
   var checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
-  checkbox.id = 'myCheckbox'; // Optionally set an ID for the checkbox
 
   //define variables necessary for function
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
