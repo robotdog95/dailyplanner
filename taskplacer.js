@@ -387,8 +387,14 @@ function handleDrag(event) {
 }
     //add draggable feature to all tasks and retrieve their cookie-stored positions
 dTasks.forEach(task => {
+  var dTaskContent = task.innerHTML;
+  if (dTaskContent){
   task.addEventListener('dragstart', handleDragStart);
   task.addEventListener('drag', handleDrag);
+  }
+  else{
+    removeEmptyTasks(task);
+  }
   const thisTaskId = task.id;
   console.log("adding draggable feature and checking for initial position for ", thisTaskId);
   const cookieString = getCookie('taskPositions');  
