@@ -84,18 +84,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   //remove empty tasks
-  function removeEmptyTasks(taskArray){
-    
-    taskArray.forEach(item => {
-      const taskElement = document.getElementById(item.id);
-      const taskContent = taskElement.innerHTML;
-      console.log(taskContent);
-      if(!taskContent){
-        console.log("empty task: ",taskElement)
-      }
+  function removeEmptyTasks(taskElement){
+    taskElement.remove();
+    console.log("task has been removed.");
       
-  });
-    
   };
       //change the color of the hour
       function HighlightHour(hourElement){
@@ -376,6 +368,7 @@ function moveToDropPosition(taskId, dropZoneId){
     }
     else{
       console.log("attempted to move an empty task : ", taskId, ". The task has not been moved");
+      removeEmptyTasks(droppedTask);
     }
 };
 
