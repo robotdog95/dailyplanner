@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
   taskElement.appendChild(checkbox);
+  checkbox.classList.add('checkmark');
   console.log("checkbox added");
   }
 
