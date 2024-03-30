@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     setPosition(taskElement, hourElement, toggleHour);
                     taskElement.appendChild(checkbox);
                     console.log("checkbox added");
-                    taskElement.innerHTML = task.title;
+                    taskElement.textContent = task.title;
                     
 
 
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         newDiv.id = taskId;
                         newDiv.classList.add('task');
                         newDiv.appendChild(checkbox);
-                        newDiv.innerHTML = task.title;
+                        newDiv.textContent = task.title;
                         newDiv.draggable = true;
                         mainDiv.appendChild(newDiv);
                         
@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     } else if (!hourElement) {
                         taskElement.appendChild(checkbox);
 console.log("checkbox added");
-                        taskElement.innerHTML = task.title;
+                        taskElement.textContent = task.title;
                         
                         console.log("invalid hour: ", hourId, ". Moving the task to ", emergencyHourId);
                         if (toggleHour) {
@@ -368,7 +368,7 @@ function moveToDropPosition(taskId, dropZoneId){
   
     const dropZoneElement = document.getElementById(dropZoneId);
     const droppedTask = document.getElementById(taskId);
-    const taskContent = droppedTask.innerHTML;
+    const taskContent = droppedTask.textContent;
     if (taskContent){
     const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
     const topPosition = dropZonePosition.top + window.scrollY;
@@ -415,7 +415,7 @@ function handleDrag(event) {
 }
     //add draggable feature to all tasks and retrieve their cookie-stored positions
 dTasks.forEach(task => {
-  var dTaskContent = task.innerHTML;
+  var dTaskContent = task.textContent;
   if (dTaskContent){
   task.addEventListener('dragstart', handleDragStart);
   task.addEventListener('drag', handleDrag);
