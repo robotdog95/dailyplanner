@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
   //ALL FUNCTIONS GO HERE---------------------------------------------------------------------------------------------------
     
+
+  // define the checkbox
+  // Create a checkbox element
+  var checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.id = 'myCheckbox'; // Optionally set an ID for the checkbox
+
   //define variables necessary for function
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
   const cleanTaskArray = [];
@@ -186,11 +193,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 const taskId = `task${task.taskId}`;
                 const taskElement = document.getElementById(taskId);
                 const hourElement = document.getElementById(hourId);
-                var checkbox = document.createElement("INPUT");
-                checkbox.setAttribute("type", "checkbox");
                 if (taskElement && hourElement) {
                     setPosition(taskElement, hourElement, toggleHour);
-                    taskElement.innerHTML = task.title, checkbox;
+                    taskElement.innerHTML = task.title;
+                    taskElement.appendChild(checkbox);
+
 
                     if (checkCookie('newCookiesWithoutDrag', taskId)){
                     console.log("pushing the position into tasksAndIds")
@@ -208,6 +215,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         newDiv.id = taskId;
                         newDiv.classList.add('task');
                         newDiv.innerHTML = task.title;
+                        newDiv.appendChild(checkbox);
                         newDiv.draggable = true;
                         mainDiv.appendChild(newDiv);
                         
@@ -234,6 +242,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
                     } else if (!hourElement) {
                         taskElement.innerHTML = task.title;
+                        taskElement.appendChild(checkbox);
                         console.log("invalid hour: ", hourId, ". Moving the task to ", emergencyHourId);
                         if (toggleHour) {
                           if (checkCookie('newCookiesWithoutDrag', taskId)){
