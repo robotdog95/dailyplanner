@@ -370,7 +370,6 @@ function moveToDropPosition(taskId, dropZoneId){
     const dropZoneElement = document.getElementById(dropZoneId);
     const droppedTask = document.getElementById(taskId);
     const taskContent = droppedTask.textContent;
-    createCheckbox(droppedTask);
     if (taskContent){
     const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
     const topPosition = dropZonePosition.top + window.scrollY;
