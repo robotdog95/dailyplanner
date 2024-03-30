@@ -360,11 +360,25 @@ function moveToDropPosition(taskId, dropZoneId){
     const topPosition = dropZonePosition.top + window.scrollY;
     const leftPosition = dropZonePosition.left + window.scrollX;
     console.log("task to be moved: ",droppedTask,"target zone: ",dropZoneElement);
+    if(dropZoneId == "later"){
+      var numberOfTasksInThisZone = dropZoneLaterContent.length;
+      var offset = `${numberOfTasksInThisZone*55}`;
+      console.log("offset for this task: ",offset);
+      var offsetTopPosition = topPosition + offset;
+      console.log("top position for this task: ",offsetTopPosition);
+      droppedTask.style.top = `${offsetTopPosition}px`;
+      droppedTask.style.left = `${leftPosition}px`;
+      droppedTask.style.width = `320px`;
+      console.log("target coordinates: TOP: ",topPosition, "LEFT: ",leftPosition);
+      console.log(droppedTask," has been moved to ", dropZoneId);
+    }
+    else{
     droppedTask.style.top = `${topPosition}px`;
     droppedTask.style.left = `${leftPosition}px`;
     droppedTask.style.width = `320px`;
     console.log("target coordinates: TOP: ",topPosition, "LEFT: ",leftPosition);
     console.log(droppedTask," has been moved to ", dropZoneId);
+    }
     }
     else{
       console.log("attempted to move an empty task : ", taskId, ". The task has not been moved");
