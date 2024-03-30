@@ -3,8 +3,12 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
   // define the checkbox
+  function createCheckbox(taskElement){
   var checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
+  taskElement.appendChild(checkbox);
+  console.log("checkbox added");
+  }
 
   //define variables necessary for function
   const colorArray = ["EFBC9B","FBF3D5","D6DAC8","9CAFAA"];
@@ -195,8 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     setPosition(taskElement, hourElement, toggleHour);
                     
                     taskElement.textContent = task.title;
-                    taskElement.appendChild(checkbox);
-                    console.log("checkbox added");
+                    createCheckbox(taskElement);
                     
 
 
@@ -217,8 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         newDiv.classList.add('task');
                         
                         newDiv.textContent = task.title;
-                        newDiv.appendChild(checkbox);
-                        console.log("checkbox added");
+                        createCheckbox(newDiv);
                         newDiv.draggable = true;
                         mainDiv.appendChild(newDiv);
                         
@@ -245,8 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
                     } else if (!hourElement) {
                         taskElement.textContent = task.title;
-                        taskElement.appendChild(checkbox);
-                        console.log("checkbox added");
+                        createCheckbox(taskElement);
                         console.log("invalid hour: ", hourId, ". Moving the task to ", emergencyHourId);
                         if (toggleHour) {
                           if (checkCookie('newCookiesWithoutDrag', taskId)){
@@ -369,8 +370,7 @@ function moveToDropPosition(taskId, dropZoneId){
     const dropZoneElement = document.getElementById(dropZoneId);
     const droppedTask = document.getElementById(taskId);
     const taskContent = droppedTask.textContent;
-    droppedTask.appendChild(checkbox);
-    console.log("checkbox added");
+    createCheckbox(droppedTask);
     if (taskContent){
     const dropZonePosition = dropZoneElement.getBoundingClientRect(); // Get position of the drop zone
     const topPosition = dropZonePosition.top + window.scrollY;
