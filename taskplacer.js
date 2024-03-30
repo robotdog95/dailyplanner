@@ -186,10 +186,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 const taskId = `task${task.taskId}`;
                 const taskElement = document.getElementById(taskId);
                 const hourElement = document.getElementById(hourId);
-    
+                var checkbox = document.createElement("INPUT");
+                checkbox.setAttribute("type", "checkbox");
                 if (taskElement && hourElement) {
                     setPosition(taskElement, hourElement, toggleHour);
-                    taskElement.innerHTML = task.title;
+                    taskElement.innerHTML = task.title, checkbox;
 
                     if (checkCookie('newCookiesWithoutDrag', taskId)){
                     console.log("pushing the position into tasksAndIds")
