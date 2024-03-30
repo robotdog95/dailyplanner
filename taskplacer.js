@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const cleanTaskArray = [];
   var tasksAndIds = {};
   var cookieArray = {};
+  var dropZoneLaterContent = [];
   async function retrieveCookiesFirst(){
      
   console.log("initializing: RETRIEVECOOKIESFIRST----------------------");
@@ -433,6 +434,11 @@ function handleDrop(event) {
     event.preventDefault();
     const dropZoneId = event.target.id;
     const taskId = event.dataTransfer.getData('text/plain');
+    if(dropZoneId == "later"){
+      dropZoneLaterContent.push(taskId);
+      console.log("dropzonelater array: ",dropZoneLaterContent);
+    }
+    
     moveToDropPosition(taskId, dropZoneId);
   //push droppedTask and dropZone Id into cookieArray:
       cookieArray[taskId] = dropZoneId;
@@ -442,6 +448,10 @@ function handleDrop(event) {
       console.log(cookieString); 
       const taskPositioning = JSON.parse(cookieString);
       console.log(taskPositioning);
+    
+
+      
+    
   }
   }
   
