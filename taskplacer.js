@@ -362,7 +362,7 @@ function moveToDropPosition(taskId, dropZoneId){
     console.log("task to be moved: ",droppedTask,"target zone: ",dropZoneElement);
     if(dropZoneId == "later"){
       var numberOfTasksInThisZone = dropZoneLaterContent.length;
-      var offset = `${numberOfTasksInThisZone*65}`;
+      var offset = `${numberOfTasksInThisZone*55}`;
       console.log("offset for this task: ",offset);
       var offsetTopPosition = topPosition + parseInt(offset);
       console.log("top position for this task: ",offsetTopPosition);
@@ -468,8 +468,10 @@ function handleDrop(event) {
     const dropZoneId = event.target.id;
     const taskId = event.dataTransfer.getData('text/plain');
     if(dropZoneId == "later"){
+      if(dropZoneLaterContent.indexOf(taskId) == -1){ //check if task is already in array
       dropZoneLaterContent.push(taskId);
       console.log("dropzonelater array: ",dropZoneLaterContent);
+      }
     }
     if (dropZoneLaterContent.includes(taskId)&&dropZoneId != "later"){
       var index = dropZoneLaterContent.indexOf(taskId);
