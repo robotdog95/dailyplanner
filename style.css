@@ -78,6 +78,7 @@ transform: scale(1.05);
   background-image: url("trash_closed.png");
   background-size: 100% 100%;
   position:absolute;
+  margin-left: 70%;
   width: 7%;
   height: 15%;
   
