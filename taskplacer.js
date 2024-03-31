@@ -423,7 +423,12 @@ function handleDragStart(event) {
   event.dataTransfer.setData('text/plain', event.target.id);
 }
 
+function handleDragOver(event) {
+  event.preventDefault();
+}
+
 function handleDrag(event) {
+  
   // Update task position or perform other actions as needed
 }
     //add draggable feature to all tasks and retrieve their cookie-stored positions
