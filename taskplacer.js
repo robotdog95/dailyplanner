@@ -479,11 +479,21 @@ dTasks.forEach(task => {
   }
 });
 function handleDragOver(event) {
-event.preventDefault();
+  event.preventDefault();
+  const dropZoneId = event.target.id;
+  if(dropZoneId = "trash"){
+    const trashcan = document.getElementById(dropZoneId);
+    trashcan.style.backgroundImage = "url('trash_open.png')";
+  }
 }
     
 function handleDragLeave(event){
-event.preventDefault();
+  event.preventDefault();
+  const dropZoneId = event.target.id;
+  if(dropZoneId = "trash"){
+    const trashcan = document.getElementById(dropZoneId);
+    trashcan.style.backgroundImage = "url('trash_closed.png')";
+  }
 }
 
 function handleDrop(event) {
