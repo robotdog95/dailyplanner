@@ -358,7 +358,7 @@ async function cookiesAndDrag(mTasks){
   }
     }
     else{
-      console.log("handling dropzone later: ", dropZone);
+      console.log("handling custom dropzone: ", dropZone);
     dropZone.addEventListener('dragover', handleDragOver);
     dropZone.addEventListener('drop', handleDrop);
     
@@ -388,6 +388,12 @@ function moveToDropPosition(taskId, dropZoneId){
       droppedTask.style.width = `320px`;
       console.log("target coordinates: TOP: ",offsetTopPosition, "LEFT: ",leftPosition);
       console.log(droppedTask," has been moved to ", dropZoneId);
+    }
+    else if(dropZoneId == "trash"){
+        removeEmptyTasks(droppedTask);
+        console.log("removed task: ", taskId);
+
+      //handle trash here -------------------------------------------------------------------------
     }
     else{
     droppedTask.style.top = `${topPosition}px`;
