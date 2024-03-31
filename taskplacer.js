@@ -344,7 +344,7 @@ async function cookiesAndDrag(mTasks){
   const dropZones = document.querySelectorAll('.drop-zone');
   var dropBool = true;
   dropZones.forEach(dropZone => {
-    if (dropZone.id != "later"){
+    if (dropZone.id != "later" && dropZone.id != "trash"){
   dropZone.style.opacity= `0`;
   console.log("in loop for drop zone", dropZone);
   const dropHourId = `hour${dropZoneHour}`;
