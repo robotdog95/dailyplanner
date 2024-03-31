@@ -481,7 +481,7 @@ dTasks.forEach(task => {
 function handleDragOver(event) {
   event.preventDefault();
   const dropZoneId = event.target.id;
-  if(dropZoneId = "trash"){
+  if(dropZoneId == "trash"){
     const trashcan = document.getElementById(dropZoneId);
     trashcan.style.backgroundImage = "url('trash_open.png')";
   }
@@ -490,7 +490,7 @@ function handleDragOver(event) {
 function handleDragLeave(event){
   event.preventDefault();
   const dropZoneId = event.target.id;
-  if(dropZoneId = "trash"){
+  if(dropZoneId == "trash"){
     const trashcan = document.getElementById(dropZoneId);
     trashcan.style.backgroundImage = "url('trash_closed.png')";
   }
