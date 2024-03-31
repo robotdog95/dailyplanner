@@ -484,19 +484,17 @@ function handleDragEnter(event) {
   event.preventDefault();
   const dropZoneId = event.target.id;
   if(dropZoneId == "trash"){
-    const trashcan = document.getElementById(dropZoneId);
+    console.log("entering trash");
+    const trashcan = event.target;
     trashcan.style.backgroundImage = "url('trash_open.png')";
   }
 }
     
 function handleDragLeave(event){
   event.preventDefault();
-  const dropZoneId = event.target.id;
-  if(dropZoneId == "trash"){
-    const trashcan = document.getElementById(dropZoneId);
+    console.log("leaving trash");
+    const trashcan = event.target;
     trashcan.style.backgroundImage = "url('trash_closed.png')";
-
-  }
 }
 
 function handleDrop(event) {
