@@ -359,6 +359,8 @@ async function cookiesAndDrag(mTasks){
     }
     else{
       console.log("handling custom dropzone: ", dropZone);
+    dropZone.addEventListener("dragenter", handleDragEnter);
+    dropZone.addEventListener("dragleave", handleDragLeave);
     dropZone.addEventListener('dragover', handleDragOver);
     dropZone.addEventListener('drop', handleDrop);
     
@@ -478,7 +480,7 @@ dTasks.forEach(task => {
     }
   }
 });
-function handleDragOver(event) {
+function handleDragEnter(event) {
   event.preventDefault();
   const dropZoneId = event.target.id;
   if(dropZoneId == "trash"){
@@ -493,6 +495,7 @@ function handleDragLeave(event){
   if(dropZoneId == "trash"){
     const trashcan = document.getElementById(dropZoneId);
     trashcan.style.backgroundImage = "url('trash_closed.png')";
+
   }
 }
 
