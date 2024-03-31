@@ -1,111 +1,108 @@
 :root {
-    --hour-assigned-to-task: 9; /* Set the default hour for the task */
+  --hour-assigned-to-task: 9; /* Set the default hour for the task */
 }
 
 
 
 .main {
-    background-color: #f7f3e9;
-    display: flex;
-    flex-direction: column;
-    padding: 10%;
+  background-color: #f7f3e9;
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
 }
 
 .hourwrapper {
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #b8968a;
-    border-radius: 20px;
-    font-family: "Roboto Slab", serif;
-    font-optical-sizing: auto;
-    font-weight: 900;
-    font-style: normal;
-    color: white;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #b8968a;
+  border-radius: 20px;
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  color: white;
 }
 
 .hour {
-    margin-left: auto;
-    margin-right: auto;
-    border-bottom: 1px solid antiquewhite;
-    margin-top: 10px;
-    padding: 15px;
-    width: min-content;
-    font-family: "Barlow", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid antiquewhite;
+  margin-top: 10px;
+  padding: 15px;
+  width: min-content;
+  font-family: "Barlow", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 
 }
 
 .task {
-    margin: 0px;
-    font-family: "Pangolin", cursive;
-    font-weight: 400;
-    font-style: normal;
-    letter-spacing: 3px;
-    position: absolute;
-    padding: 10px;
-    padding-left: 25px;
-    padding-right: 15px;
-    border-radius: 20px;
-    width: 320px; 
-    transition: all .2s ease-in-out;
-    cursor: grab; /* Change cursor style when hovering over draggable elements */
+  margin: 0px;
+  font-family: "Pangolin", cursive;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 3px;
+  position: absolute;
+  padding: 10px;
+  padding-left: 25px;
+  padding-right: 15px;
+  border-radius: 20px;
+  width: 320px; 
+  transition: all .2s ease-in-out;
+  cursor: grab; /* Change cursor style when hovering over draggable elements */
 }
 
 .task:active {
-  cursor: grabbing; /* Change cursor style when dragging */
-  transform: scale(1.05); 
-    /* Add additional styling for the dragged element, such as a shadow or opacity */
+cursor: grabbing; /* Change cursor style when dragging */
+transform: scale(1.05); 
+  /* Add additional styling for the dragged element, such as a shadow or opacity */
 }
 
 .drop-zone {
-    position: absolute;
-    border-radius: 20px;
-    width: 350px;
-    height: 55px;
-    background-color: white;
-    
+  position: absolute;
+  border-radius: 20px;
+  width: 350px;
+  height: 55px;
+  background-color: white;
+  
 }
 
 .later{
-    height: 400px;
-    opacity: 80%;
-    border: 0.15em solid black;
-}
-  
-input[type="checkbox"] {
-  appearance: none;
-  margin: 0px;
-  margin-right: 10px;
-  /* Not removed via appearance */
-  background-color: #ffffff;
-  font: inherit;
-  color: #ffffff;
-  width: 1.6em;
-  height: 1.6em;
+  height: 400px;
+  opacity: 80%;
   border: 0.15em solid black;
-  border-radius: 0.55em;
+}
+
+.trash{
+  position:absolute;
+  width: 300px;
+  height: 300px;
+  background-color: black;
+}
+
+input[type="checkbox"] {
+appearance: none;
+margin: 0px;
+margin-right: 10px;
+/* Not removed via appearance */
+background-color: #ffffff;
+font: inherit;
+color: #ffffff;
+width: 1.6em;
+height: 1.6em;
+border: 0.15em solid black;
+border-radius: 0.55em;
 }
 
 input[type="checkbox"]::before {
-  font-size: 15px;
-  content: "x";
-  width: 0.75em;
-  height: 0.75em;
+font-size: 15px;
+content: "x";
+width: 0.75em;
+height: 0.75em;
 
 }
 
 input[type="checkbox"]:checked::before {
-  transform: scale(1);
-  content: "🍓";
+transform: scale(1);
+content: "🍓";
 }
-
-
-  
-
-  
-
-  
- 
-  
- 
