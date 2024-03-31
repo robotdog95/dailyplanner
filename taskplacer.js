@@ -428,7 +428,7 @@ function handleDragOver(event) {
 }
 
 function handleDrag(event) {
-  
+
   // Update task position or perform other actions as needed
 }
     //add draggable feature to all tasks and retrieve their cookie-stored positions
@@ -527,6 +527,11 @@ function handleDrop(event) {
     }
     
     moveToDropPosition(taskId, dropZoneId);
+    if(dropZoneId == "trash"){
+      console.log("element put in trash");
+      const trashcan = document.getElementById(dropZoneId);
+      trashcan.style.backgroundImage = "url('trash_closed.png')";
+    }
   //push droppedTask and dropZone Id into cookieArray:
       cookieArray[taskId] = dropZoneId;
       console.log("cookieArray: ", cookieArray);
