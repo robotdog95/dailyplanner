@@ -74,11 +74,13 @@ transform: scale(1.05);
 }
 
 .trash{
+  background-color: unset;
   background-image: url("trash_closed.png");
   background-size: 100% 100%;
   position:absolute;
-  width: 10%;
+  width: 7%;
   height: 15%;
+  
 }
 .trash:hover{
   background-image: url("trash_open.png");
